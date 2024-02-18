@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>居酒屋向け 無料ホームページテンプレート tp_izakaya5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ここにサイト説明を入れます">
+<meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/openclose.js"></script>
+<script src="js/fixmenu_pagetop.js"></script>
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<header>
+<h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="居酒屋"></a></h1>
+<!--PC用（901px以上端末）メニュー-->
+<nav id="menubar">
+<ul>
+<li><a href="index.html">ホーム</a></li>
+<li><a href="template.html">テンプレートの使い方</a></li>
+<li><a href="about.html">お店情報</a></li>
+<li><a href="menu.html">メニュー</a></li>
+<li class="current"><a href="contact.html">ご予約・お問合せ</a></li>
+</ul>
+</nav>
+<ul class="icon">
+<li><a href="#"><img src="images/icon_facebook.png" alt="Facebook"></a></li>
+<li><a href="#"><img src="images/icon_twitter.png" alt="Twitter"></a></li>
+<li><a href="#"><img src="images/icon_instagram.png" alt="Instagram"></a></li>
+</ul>
+</header>
+
+<!--小さな端末用（900px以下端末）ブロック-->
+<div id="menubar-s">
+<nav>
+<ul>
+<li><a href="index.html"><img src="images/logo.png" alt="居酒屋"></a></li>
+<li><a href="template.html">テンプレートの使い方</a></li>
+<li><a href="about.html">お店情報</a></li>
+<li><a href="menu.html">メニュー</a></li>
+<li><a href="contact.html">ご予約・お問合せ</a></li>
+</ul>
+</nav>
+<ul class="icon">
+<li><a href="#"><img src="images/icon_facebook.png" alt="Facebook"></a></li>
+<li><a href="#"><img src="images/icon_twitter.png" alt="Twitter"></a></li>
+<li><a href="#"><img src="images/icon_instagram.png" alt="Instagram"></a></li>
+</ul>
+</div>
+
+<div id="contents">
+
+<div id="main">
+
+<section>
+
+<h2>お問い合わせフォーム</h2>
+
+<!-- フォームの情報はここからです -->
+<form name="form1" enctype="multipart/form-data" method="post" action="<?php echo $_SERVER["REQUEST_URI"];?>">
+<input type="hidden" name="mode" value="confirm">
+<table class="ta1">
+<caption>確認画面</caption>
+<tr>
+<th width="150">お名前<span style="color:red">※</span></th>
+<td>
+<input type="hidden" name="item1" value="<?php echo $form["item1"];?>">
+<?php echo $form["item1"];?>
+</td>
+</tr>
+<tr>
+<th width="150">メールアドレス<span style="color:red">※</span></th>
+<td>
+<input type="hidden" name="item2" value="<?php echo $form["item2"];?>">
+<?php echo $form["item2"];?>
+</td>
+</tr>
+<tr>
+<th>お問い合わせ内容<span style="color:red">※</span></th>
+<td>
+<input type="hidden" name="item3" value="<?php echo $form["item3"]; ?>">
+<?php echo nl2br($form["item3"]);?>
+</td>
+</tr>
+</table>
+<div class="c">
+<input type="submit" value="送信する" class="btn">
+&nbsp;
+<input type="button" value="戻る" onClick="document.form1.mode.value='reinput';document.form1.submit()" class="btn">
+</div>
+</form>
+<!-- フォームの情報はここまでです -->
+
+</section>
+
+</div>
+<!--/#main-->
+
+</div>
+<!--/#contents-->
+
+<footer>
+<small>Copyright&copy; <a href="index.html">居酒屋</a> All Rights Reserved.</small>
+<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+</footer>
+
+<!--背景画像2-->
+<aside id="mainimg">
+<div class="slide-sub2">slide-sub2</div>
+</aside>
+
+<!--PAGE TOPボタン（ページの上部へ戻るボタン）-->
+<p class="nav-fix-pos-pagetop"><a href="#"><img src="images/icon_pagetop.png" alt="PAGE TOP"></a></p>
+
+<!--メニュー開閉ボタン-->
+<div id="menubar_hdr" class="close"></div>
+<!--メニューの開閉処理条件設定　900px以下-->
+<script>
+if (OCwindowWidth() <= 900) {
+	open_close("menubar_hdr", "menubar-s");
+}
+</script>
+
+</body>
+</html>
