@@ -1,0 +1,30 @@
+From 1aead75c53a08ac2a704fcb73d6e48cb05e1ac14 Mon Sep 17 00:00:00 2001
+From: "Jin Gyu Yang(JIN)" <jjolraman@gmail.com>
+Date: Mon, 19 Feb 2024 16:45:35 +0900
+Subject: [PATCH] =?UTF-8?q?form.html=20php=20=EB=B0=8F=20menu=20=ED=95=98?=
+ =?UTF-8?q?=EB=93=9C=EC=BD=94=EB=94=A9=20=EB=8C=80=EC=B2=B4=20=EC=9E=91?=
+ =?UTF-8?q?=EC=97=85=EC=A4=91?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ form.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/form.html b/form.html
+index 50629e6..db95503 100644
+--- a/form.html
++++ b/form.html
+@@ -37,7 +37,7 @@
+ <input type="hidden" name="mode" value="form">
+ 
+ <table class="ta1">
+-<!-- 入力／確認 -->
++
+ <!--<tr><th class="tamidashi" colspan="2">お問い合わせフォーム</th></tr>-->
+ <tr>
+ <th width="150">お名前<span style="color:red">※</span></th>
+-- 
+2.43.0.windows.1
+
