@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>会員登録</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- style.css 파일 연결 -->
+  </head>
+  <body>
+    <header>
+      <!-- 사이드바 내용, 여기에 로고나 메뉴를 넣을 수 있습니다. -->
+      <h1 id="logo">
+        <a href="index.html"><img src="images/logo.png" alt="居酒屋" /></a>
+      </h1>
+      <div id="menubar">
+        <!-- 여기에 메뉴 항목들을 추가하세요. -->
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="about.html">お店情報</a></li>
+          <!-- 기타 메뉴 항목들 -->
+        </ul>
+      </div>
+    </header>
+
+    <div class="signup-container">
+      <form class="signup-form" action="/signup" method="post">
+        <h2>会員登録</h2>
+
+        <!-- 이름 입력 필드 -->
+        <input type="text" placeholder="お名前" required />
+
+        <!-- 이메일 입력 필드 -->
+        <input type="email" placeholder="メールアドレス" required />
+
+        <!-- 비밀번호 입력 필드 -->
+        <input type="password" placeholder="パスワード" required />
+
+        <!-- 비밀번호 확인 입력 필드 -->
+        <input type="password" placeholder="パスワード(確認)" required />
+
+        <!-- 제출 버튼 -->
+        <button type="submit">登録</button>
+      </form>
+    </div>
+  </body>
+</html>
