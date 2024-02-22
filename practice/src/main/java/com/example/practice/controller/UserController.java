@@ -39,6 +39,7 @@ public class UserController {
 	@PostMapping("join")
 	public String join(@ModelAttribute User user) {
 		userService.create(user);
+		log.info("user: {}", user);
 		return "redirect:/";
 	}
 	

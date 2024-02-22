@@ -29,6 +29,11 @@
         });
         
         });
+    
+    function submitForm() {
+    	
+    }
+    
     </script>
 </head>
 <body>
@@ -39,7 +44,7 @@
             <form id="reserve" action="reserve" autocomplete="off" method="post">
             <div class="container-fluid card-header bg-dark">
                 <div class="d-flex justify-content-center">
-                    <input type="text" id="dp1" class="datepicker" placeholder="날짜를 정해주세요." name="date" readonly><span class="fa fa-calendar"></span>
+                    <input name="date" type="text" id="dp1" class="datepicker" placeholder="날짜를 정해주세요." readonly><span class="fa fa-calendar"></span>
 
                     <select name="person" class="form-select ml-3">
                         <option selected>인원수</option>
@@ -51,29 +56,30 @@
                     </select>
                 </div>
             </div>
-            <div class="card-body p-4 p-sm-4 mt-3"><h3>오전</h3>
-                <div class="row text-center mx-0">
-                <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">10:00AM</div></div>
-                <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">11:00AM</div></div>
-                <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">12:00AM</div></div>
+           <div class="card-body p-4 p-sm-5 mt-3"><h3>오전</h3>
+                    <div class="row text-center mx-0">
+                    <div class="col-md-2 col-4 my-3 px-0"><div id="myDiv" class="cell py-2">10:00AM</div></div>
+                    <input type="hidden" id="hiddenInput" name="time" value="10:00AM">
+                    <div class="col-md-2 col-4 my-3 px-0"><div id="myDiv" class="cell py-2">11:00AM</div></div>
+                    <div class="col-md-2 col-4 my-3 px-0"><div id="myDiv"class="cell py-2">12:00AM</div></div>
+                    </div>
                 </div>
-            </div>
-            <div class="card-body p-4 p-sm-4 mt-3"><h3>오후</h3>
-                <div class="row text-center mx-0">
-                    <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">1:00PM</div></div>
-                    <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">2:00PM</div></div>
-                    <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">3:00PM</div></div>
-                    <div class="col-md-5 col-4 my-3 px-0"><div class="cell py-2">4:00PM</div></div>
-                    <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">6:00PM</div></div>
-                    <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">7:00PM</div></div>
-                    <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">8:00PM</div></div>
-                    <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">9:00PM</div></div>
-                </div>
-            </div>
+                <div class="card-body p-4 p-sm-5 mt-0"><h3>오후</h3>
+                    <div class="row text-center mx-0">
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">1:00PM</div></div>
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">2:00PM</div></div>
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">3:00PM</div></div>
+                        <div class="col-md-5 col-4 my-3 px-0"><div class="cell py-2">4:00PM</div></div>
+                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">6:00PM</div></div>
+                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">7:00PM</div></div>
+                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">8:00PM</div></div>
+                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">9:00PM</div></div>
+                    </div>
+                </div> 
             </form>
         </div>
         <div id="bt">
-            <button type="submit" form="reserve">예약하기</button>
+            <button type="submit" form="reserve" onclick="submitForm()">예약하기</button>
         </div>
         </div>
     </div>

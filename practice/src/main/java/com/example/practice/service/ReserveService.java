@@ -24,6 +24,7 @@ public class ReserveService {
 				.id(reserve.getId())
 				.person(reserve.getPerson())
 				.date(reserve.getDate())
+				.time(reserve.getTime())
 				.member(reserve.getMember())
 				.build();				
 		

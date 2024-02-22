@@ -26,17 +26,24 @@ public class PostService {
 	private final UserRepository userRepository;
 	
 	@Transactional
-	public void create(Post post, User user) {
-		
-		    PostEntity postEntity = PostEntity.builder()
-					.id(post.getId())
-					.title(post.getTitle())
-					.content(post.getContent())
-					.createTime(post.getCreateTime())
-//					.user()
-					.build();
+	public void create(Post post) {
+			Optional<UserEntity> byId = userRepository.findById(post.getUser().getId());
 			
-		    postRepository.save(postEntity);
+			if(byId.isPresent()) {
+				UserEntity userEntity = byId.get();
+				
+				PostEntity postEntity = PostEntity.builder()
+						.id(post.getId())
+						.title(post.getTitle())
+						.content(post.getContent())
+						.createTime(post.getCreateTime())
+						.user(userEntity)
+						.build();
+				
+		    	postRepository.save(postEntity);
+			}
+		
+		    
 	}
 
 	public List<Post> findAll() {

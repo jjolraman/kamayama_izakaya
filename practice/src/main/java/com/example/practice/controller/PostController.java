@@ -28,15 +28,15 @@ public class PostController {
 	private final PostService postService;
 	
 	@GetMapping("create")
-	public String post(@ModelAttribute User user, Model model) {
-		model.addAttribute("loginUser", user);
+	public String post() {
 		return "post/create";
 	}
 	
 	@PostMapping("create")
 	public String postCreate(@ModelAttribute Post post,
-							 @ModelAttribute User user) {
-		postService.create(post, user);
+							 @SessionAttribute(name="loginUser") User user) {
+		post.setUser(user);
+		postService.create(post);
 		return "redirect:/post/list";
 	}
 	

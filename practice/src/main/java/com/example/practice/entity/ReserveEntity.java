@@ -1,6 +1,7 @@
 package com.example.practice.entity;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -44,16 +45,19 @@ public class ReserveEntity {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 	@Column
+	private String time;
+	@Column
 	@Enumerated(EnumType.STRING)
 	private Member member;
 	
 	@Builder
 	public ReserveEntity(Long id, int person, 
-			LocalDate date, Member member) {
+			LocalDate date, String time, Member member) {
 		this.id = id;
 		this.person = person;
 //		this.menu = menu;
 		this.date = date;
+		this.time = time;
 		this.member = member;
 	}
 	
@@ -63,6 +67,7 @@ public class ReserveEntity {
 				.person(person)
 //				.menu(menu)
 				.date(date)
+				.time(time)
 				.member(member)
 				.build();
 		return build;

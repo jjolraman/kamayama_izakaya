@@ -1,6 +1,7 @@
 package com.example.practice.model;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import com.example.practice.entity.ReserveEntity;
 
@@ -16,6 +17,7 @@ public class Reserve {
 	private int person;
 //	private Menu menu;
 	private LocalDate date;
+	private String time;
 	private Member member;
 	
 	public ReserveEntity toEntity() {
@@ -24,6 +26,7 @@ public class Reserve {
 				.person(person)
 //				.menu(menu)
 				.date(date)
+				.time(time)
 				.member(member)
 				.build();
 		return build;
@@ -31,11 +34,12 @@ public class Reserve {
 	
 	@Builder
 	public Reserve(Long id, int person,
-			LocalDate date, Member member) {
+			LocalDate date, String time, Member member) {
 		this.id = id;
 		this.person = person;
 //		this.menu = menu;
 		this.date = date;
+		this.time = time;
 		this.member = member;
 	}
 }
