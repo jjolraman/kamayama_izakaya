@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Detail</title>
+</head>
+<body>
+<table border="1px">
+	<tr>
+		<th>id</th>
+		<th>아이디</th>
+		<th>비밀번호</th>
+		<th>이름</th>
+		<th>이메일</th>
+		<th>생년월일</th>
+	</tr>
+	<tr>
+		<td th:text="${user.id}"></td>
+		<td th:text="${user.username}"></td>
+		<td th:text="${user.password}"></td>
+		<td th:text="${user.name}"></td>
+		<td th:text="${user.email}"></td>
+		<td th:text="${user.birth}"></td>
+	</tr>
+</table>
+<a href="/list">목록으로</a>
+</body>
+</html>

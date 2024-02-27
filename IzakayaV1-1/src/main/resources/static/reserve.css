@@ -1,0 +1,168 @@
+@charset "EUC-KR";
+
+body {
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+    background-color: #C5CAE9 !important;
+    background-repeat: no-repeat;
+    padding: 0px !important;
+}
+
+.container-fluid {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+.card {
+  box-shadow: 0px 4px 8px 0px #7986CB;
+}
+
+
+/* input {
+    padding: 10px 20px !important;
+    border: 1px solid #000 !important;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: #9f6d6d !important;
+    color: #fff !important;
+    font-size: 16px;
+    letter-spacing: 1px;
+    width: 180px;
+} */
+
+
+input:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #512DA8;
+    outline-width: 0;
+}
+
+::placeholder {
+    color: #fff;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: #fff;
+}
+
+::-ms-input-placeholder {
+    color: #fff;
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0;
+}
+
+.datepicker {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: none;
+  padding: 10px !important;
+  width: 300px;
+  text-align: center;
+  border-radius: 7px;
+}
+
+.datepicker-dropdown:after {
+  border-bottom: 6px solid #000;
+}
+
+thead tr:nth-child(3) th {
+  color: #fff !important;
+  font-weight: bold;
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+.dow, .old-day, .day, .new-day {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 0px !important;
+}
+
+.old-day:hover, .day:hover, .new-day:hover, .month:hover, .year:hover, .decade:hover, .century:hover {
+  border-radius: 6px !important;
+  background-color: #eee;
+  color: #000;
+}
+
+.active {
+  border-radius: 6px !important;
+  background-image: linear-gradient(#90CAF9, #64B5F6) !important;
+  color: #000 !important;
+}
+
+.disabled {
+  color: #616161 !important;
+}
+
+.prev, .next, .datepicker-switch {
+  border-radius: 0 !important;
+  padding: 20px 10px !important;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: #fff !important;
+  opacity: 0.8;
+}
+
+.prev:hover, .next:hover, .datepicker-switch:hover {
+  background-color: inherit !important;
+  opacity: 1;
+}
+
+.cell {
+  border: 1px solid #BDBDBD;
+  cursor: pointer;
+  border-radius: 15px;
+  width: 100px;
+  height: 43px;
+}
+
+.cell:hover {
+  border: 1px solid #2db400;
+}
+
+.cell.select {
+  background-color: #2db400;
+  color: #fff;
+}
+
+.fa-calendar {
+  color: #fff;
+  font-size: 30px;
+  padding-top: 8px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+#bt{
+  text-align: center;
+  margin-top: 40px;
+}
+
+button{
+  padding: 10px 0;
+  width: 160px;
+  background-color: #fff;
+  border-radius: 15px;
+  border: 1px solid #BDBDBD;
+}
+
+button:hover{
+  background-color: #2db400;
+  transition: all 0.3s;
+  color: #fff;
+}
+
+.form-select{
+  width: 150px;
+  display: inline;
+  
+}
