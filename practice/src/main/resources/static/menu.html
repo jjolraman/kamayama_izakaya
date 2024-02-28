@@ -19,6 +19,24 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!--[if lt IE 10]> <![endif]-->
+    <script>
+    function openPopup(url) {
+        window.open(url, "Popup", "width=400,height=400");
+    }
+</script>
+<style>
+/* 로그인 버튼 스타일 */
+.popup-btn {
+    color: #fff;
+    background-color: #ff5733;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.popup-btn:hover {
+    background-color: #e24424;
+}
+</style>
   </head>
 
   <body>
@@ -29,12 +47,14 @@
       <!--PC用（901px以上端末）メニュー-->
       <nav id="menubar">
         <ul>
-          <li><a href="index.html">ホーム</a></li>
-          <li><a href="template.html">テンプレートの使い方</a></li>
-          <li><a href="about.html">お店情報</a></li>
-          <li class="current"><a href="menu.html">メニュー</a></li>
-          <li><a href="contact.html">ご予約・お問合せ</a></li>
-        </ul>
+         <li><a href="index.html">ホーム</a></li>
+				<li><a href="about.html">お店情報</a></li>
+				<li><a href="menu.html">メニュー</a></li>
+				<li><a href="reserve">ご予約</a></li>
+				<li><a href="contact.html">お問合せ</a></li>
+				<li><a href="javascript:void(0)" onclick="openPopup('login')"
+					class="popup-btn">ログイン</a></li>
+			</ul>
       </nav>
       
     </header>
@@ -46,11 +66,14 @@
           <li>
             <a href="index.html"><img src="images/logo.png" alt="居酒屋" /></a>
           </li>
-          <li><a href="template.html">テンプレートの使い方</a></li>
-          <li><a href="about.html">お店情報</a></li>
-          <li><a href="menu.html">メニュー</a></li>
-          <li><a href="contact.html">ご予約・お問合せ</a></li>
-        </ul>
+         <li><a href="index.html">ホーム</a></li>
+				<li><a href="about.html">お店情報</a></li>
+				<li><a href="menu.html">メニュー</a></li>
+				<li><a href="reserve">ご予約</a></li>
+				<li><a href="contact.html">お問合せ</a></li>
+				<li><a href="javascript:void(0)" onclick="openPopup('login')"
+					class="popup-btn">ログイン</a></li>
+			</ul>
       </nav>
       <ul class="icon">
         <li>
@@ -87,22 +110,22 @@
 
           <div class="box1">
             <figure><img src="images/set_2.jpg" alt="メニュー名" /></figure>
-            <h4>set menu 2　3,000円</h4>
+            <h4>鳥歐焼鳥コース　16品　　4,900円（5,390円税込）</h4>
             <p>
-              2번메뉴 <br />
-              메뉴설명입니다<br />
-              추후 좋아요 기능 추가..?
+              旬の前菜5種盛り/極濃厚鶏白湯スープ/おまかせ焼鳥5品/旬野菜串2品/名物鶏いくら/鹿と牡蠣の無化調ソーセージ/甘味<br />
+              메뉴명과 내용은 단순한 예시
             </p>
             <span class="mark">人気</span>
           </div>
 
           <div class="box1">
             <figure><img src="images/set_3.jpg" alt="メニュー名" /></figure>
-            <h4>メニュー名　XXX円</h4>
+            <h4>歓送迎会に！天草・牛深直送のお刺身付きコース（8品）＆飲み放題付！4500円(税込)</h4>
             <p>
-              3번메뉴 <br />
-              메뉴설명입니다<br />
-              추후 좋아요 기능 추가..?
+              熊本県天草牛深産の新鮮な魚介類や全国各地の厳選したこだわりの素材を使った旬を味わえる！
+              全室個室で宴会や打ち上げなどにおすすめのコースになっております！
+              お酒に合うお食事も多数ありますのでぜひこのコースでご堪能ください♪※写真はイメージです。
+              글자 크기 확인용. 폰트를 키우거나 ...<br />
             </p>
             <span class="mark">人気</span>
           </div>
