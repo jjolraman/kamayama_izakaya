@@ -1,71 +1,67 @@
 package com.izakaya.website.entity;
 
-import java.time.LocalDate;
-
-import org.antlr.v4.runtime.misc.NotNull;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.izakaya.website.model.Post;
 import com.izakaya.website.model.User;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name="posts")
+@Getter
 @NoArgsConstructor
 @Entity
-@EntityListeners(AuditingEntityListener.class)
-public class PostEntity {
+@Table(name = "users")
+public class UserEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name="post_id")
+	@Column
 	private Long id;
+	@Column(unique = true)
+	private String email;
 	@Column
-	private String title;
+	private String password;
 	@Column
-	private String content;
-	@Column(name = "create_time")
-	@CreatedDate
-	private LocalDate createTime;
+	private String name;
+	@Column
+	private String tel;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "users_id")
-	private UserEntity user;
-	
+/*	@OneToMany(mappedBy = "user")
+	private List<PostEntity> posts = new ArrayList<>();
+*/	
 	@Builder(toBuilder = true)
-	public PostEntity(Long id, String title, String content, LocalDate createTime,
-			UserEntity user) {
+	public UserEntity(Long id, String email, String password
+			, String name, String tel) {
 		this.id = id;
-		this.title = title;
-		this.content = content;
-		this.createTime = createTime;
-		this.user = user;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.tel = tel;
 	}
 	
-	public Post toPost() {
-		Post build = Post.builder()
+	public User toUser() {
+		User build = User.builder()
 				.id(id)
-				.title(title)
-				.content(content)
-				.createTime(createTime)
-				.user(user.toUser())
+				.email(email)
+				.password(password)
+				.name(name)
+				.tel(tel)
 				.build();
 		return build;
 	}
 	
+	public void update(Long id, String email, String password
+			, String name, String tel) {
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.tel = tel;
+	}
+
 }
+

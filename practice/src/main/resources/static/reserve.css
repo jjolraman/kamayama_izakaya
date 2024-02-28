@@ -164,5 +164,10 @@ button:hover{
 .form-select{
   width: 150px;
   display: inline;
-  
+}
+
+.disabled {
+    background-color: #000;
+    color: #ccc;
+    pointer-events: none; /* 클릭 이벤트 비활성화 */
 }

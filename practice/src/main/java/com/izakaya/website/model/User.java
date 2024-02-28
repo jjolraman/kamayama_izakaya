@@ -1,13 +1,7 @@
 package com.izakaya.website.model;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.izakaya.website.entity.PostEntity;
 import com.izakaya.website.entity.UserEntity;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,32 +10,29 @@ import lombok.NoArgsConstructor;
 @Data
 public class User {
 	private Long id;
-	private String username;
+	private String email;
 	private String password;
 	private String name;
-	private String email;
-	private LocalDate birth;
+	private String tel;
 	
 	public UserEntity toEntity() {
 		UserEntity build = UserEntity.builder()
 				.id(id)
-				.username(username)
+				.email(email)
 				.password(password)
 				.name(name)
-				.email(email)
-				.birth(birth)
+				.tel(tel)
 				.build();
 		return build;
 	}
 	
 	@Builder
-	public User(Long id, String username, String password
-			, String name, String email, LocalDate birth) {
+	public User(Long id, String email, String password
+			, String name, String tel) {
 		this.id = id;
-		this.username = username;
+		this.email = email;
 		this.password = password;
 		this.name = name;
-		this.email = email;
-		this.birth = birth;
+		this.tel = tel;
 	}
 }

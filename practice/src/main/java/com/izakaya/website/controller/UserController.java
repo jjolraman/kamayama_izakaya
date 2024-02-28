@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.izakaya.website.model.User;
+import com.izakaya.website.repository.UserRepository;
 import com.izakaya.website.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -25,36 +26,49 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 	// 생성자 주입
 	private final UserService userService;
+	private final UserRepository userRepository;
 	
 	@GetMapping()
 	public String main() {
 		return "index";
 	}
 	
+	/*회원가입 페이지*/
 	@GetMapping("join")
-	public String joinForm() {
+	public String joinForm(Model model) {
+		User user = new User();
+		model.addAttribute("user", user);
 		return "user/join";
 	}
 	
+	/*회원가입*/
 	@PostMapping("join")
 	public String join(@ModelAttribute User user) {
+		User findUser = userService.findByEmail(user.getEmail());
+		
+		// 아이디 중복 확인
+		if(findUser != null) {
+			return "user/join";
+		}
+		
 		userService.create(user);
-		log.info("user: {}", user);
 		return "redirect:/";
 	}
 	
+	/*로그인 페이지*/
 	@GetMapping("login")
-	public String loginForm() {
+	public String loginForm(Model model) {
+		model.addAttribute("user", new User());
 		return "user/login";
 	}
 	
+	/*로그인*/
 	@PostMapping("login")
 	public String login(@ModelAttribute User user, HttpSession session) {
 		User loginResult = userService.login(user);
 		
 		if(loginResult != null) {
 			session.setAttribute("loginUser", loginResult);
-			log.info("loginUser: {}", loginResult);
 			return "redirect:/";
 		} else {
 			return "user/login";

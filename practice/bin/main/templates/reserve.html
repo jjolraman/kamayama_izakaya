@@ -12,29 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
-
     <link rel="stylesheet" href="reserve.css">
-    <script>
-    $(document).ready(function(){
-
-        $('.datepicker').datepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true,
-            startDate: '0d'
-        });
-        
-        $('.cell').click(function(){
-            $('.cell').removeClass('select');
-            $(this).addClass('select');
-        });
-        
-        });
-    
-    function submitForm() {
-    	
-    }
-    
-    </script>
+    <script src="script.js"></script>
 </head>
 <body>
     <div class="container-fluid px-0 px-sm-1 mx-auto mt-5">
@@ -56,30 +35,30 @@
                     </select>
                 </div>
             </div>
-           <div class="card-body p-4 p-sm-5 mt-3"><h3>오전</h3>
+           <div class="card-body p-4 p-sm-4 ml-4"><h3>오전</h3>
                     <div class="row text-center mx-0">
-                    <div class="col-md-2 col-4 my-3 px-0"><div id="myDiv" class="cell py-2">10:00AM</div></div>
-                    <input type="hidden" id="hiddenInput" name="time" value="10:00AM">
-                    <div class="col-md-2 col-4 my-3 px-0"><div id="myDiv" class="cell py-2">11:00AM</div></div>
-                    <div class="col-md-2 col-4 my-3 px-0"><div id="myDiv"class="cell py-2">12:00AM</div></div>
+                        <input type="hidden" name="time" id="selectedTime" value="">
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="10:00AM">10:00AM</div></div>
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="11:00AM">11:00AM</div></div>
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="12:00PM">12:00PM</div></div>
                     </div>
                 </div>
-                <div class="card-body p-4 p-sm-5 mt-0"><h3>오후</h3>
+                <div class="card-body p-4 p-sm-4 ml-4"><h3>오후</h3>
                     <div class="row text-center mx-0">
-                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">1:00PM</div></div>
-                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">2:00PM</div></div>
-                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">3:00PM</div></div>
-                        <div class="col-md-5 col-4 my-3 px-0"><div class="cell py-2">4:00PM</div></div>
-                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">6:00PM</div></div>
-                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">7:00PM</div></div>
-                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">8:00PM</div></div>
-                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">9:00PM</div></div>
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="1:00PM">1:00PM</div></div>
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="2:00PM">2:00PM</div></div>
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="3:00PM">3:00PM</div></div>
+                        <div class="col-md-5 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="4:00PM">4:00PM</div></div>
+                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2 time-slot" data-time="6:00PM">6:00PM</div></div>
+                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2 time-slot" data-time="7:00PM">7:00PM</div></div>
+                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2 time-slot" data-time="8:00PM">8:00PM</div></div>
+                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2 time-slot" data-time="9:00PM">9:00PM</div></div>
                     </div>
-                </div> 
+                </div>            
             </form>
         </div>
         <div id="bt">
-            <button type="submit" form="reserve" onclick="submitForm()">예약하기</button>
+            <button type="submit" form="reserve">예약하기</button>
         </div>
         </div>
     </div>
