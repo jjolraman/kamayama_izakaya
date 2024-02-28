@@ -1,4 +1,4 @@
-package com.example.practice.entity;
+package com.izakaya.website.entity;
 
 import java.time.LocalDate;
 
