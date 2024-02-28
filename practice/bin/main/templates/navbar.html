@@ -1,0 +1,25 @@
+<nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Start Bootstrap</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/post/list">게시글 목록</a></li>
+                        <li  class="nav-item"><a class="nav-link active" aria-current="page" href="/post/create">글쓰기</a></li>
+                        <li class="nav-item dropdown">
+                            <a th:unless="${session.loginUser}" class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">로그인</a>
+                            <a th:if="${session.loginUser}" class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a th:unless="${session.loginUser}" class="dropdown-item" href="/login">로그인</a></li>
+                                <li><a th:if="${session.loginUser}" class="dropdown-item" href="logout">로그아웃</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a th:unless="${session.loginUser}" class="dropdown-item" href="/join">회원가입</a></li>
+                                <li><a th:if="${session.loginUser}" th:href="@{|update/${session.loginUser.id}|}" class="dropdown-item">정보수정</a></li>
+                                <li><hr th:if="${session.loginUser}" class="dropdown-divider" /></li>
+                                <li><a th:if="${session.loginUser}" href="list" class="dropdown-item">회원조회</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>

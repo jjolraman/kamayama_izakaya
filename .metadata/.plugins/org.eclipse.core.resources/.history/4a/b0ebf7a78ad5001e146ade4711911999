@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>居酒屋向け 無料ホームページテンプレート tp_izakaya5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ここにサイト説明を入れます">
+<meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/openclose.js"></script>
+<script src="js/fixmenu_pagetop.js"></script>
+<script>
+    function openPopup(url) {
+        window.open(url, "Popup", "width=400,height=400");
+    }
+</script>
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style>
+/* 로그인 버튼 스타일 */
+.popup-btn {
+    color: #fff;
+    background-color: #ff5733;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.popup-btn:hover {
+    background-color: #e24424;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="居酒屋"></a></h1>
+<!--PC용 (901px 이상 장치) 메뉴-->
+<nav id="menubar">
+<ul>
+<li><a href="index.html">ホーム</a></li>
+<li><a href="about.html">お店情報</a></li>
+<li><a href="menu.html">メニュー</a></li>
+<li class="current"><a href="#" onclick="openPopup('reserve'); preventDefault(event);">ご予約</a></li>
+<li><a href="contact.html">お問合せ</a></li>
+<li><a href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
+</ul>
+</nav>
+<ul class="icon">
+<li><a href="#"><img src="images/icon_facebook.png" alt="Facebook"></a></li>
+<li><a href="#"><img src="images/icon_twitter.png" alt="Twitter"></a></li>
+<li><a href="#"><img src="images/icon_instagram.png" alt="Instagram"></a></li>
+</ul>
+</header>
+
+<!--작은 장치용 (900px 이하 장치) 블록-->
+<div id="menubar-s">
+<nav>
+<ul>
+<li><a href="index.html">ホーム</a></li>
+<li><a href="about.html">お店情報</a></li>
+<li><a href="menu.html">メニュー</a></li>
+ <li class="current"><a href="#" onclick="openPopup('reserve'); preventDefault(event);">ご予約</a></li>
+<li><a href="contact.html">お問合せ</a></li>
+<li><a href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
+</ul>
+</nav>
+<ul class="icon">
+<li><a href="#"><img src="images/icon_facebook.png" alt="Facebook"></a></li>
+<li><a href="#"><img src="images/icon_twitter.png" alt="Twitter"></a></li>
+<li><a href="#"><img src="images/icon_instagram.png" alt="Instagram"></a></li>
+</ul>
+</div>
+
+<div id="contents">
+
+<div id="main">
+
+<section>
+
+<h2>お店情報</h2>
+
+<table class="ta1">
+<caption>アクセス</caption>
+<tr>
+<th>所在地</th>
+<td>東京都XX区XXXX</td>
+</tr>
+<tr>
+<th>地図</th>
+<td><a href="http://template-party.com/file/pickup_googlemap.html">Google Mapを使いたい人はこちらの解説をご覧下さい。</a><br>
+<img src="images/dummy_map_main.jpg" alt=""></td>
+</tr>
+<tr>
+<th colspan="2" class="tamidashi">table途中に入れる見出し</th>
+</tr>
+<tr>
+<th>見出し</th>
+<td>ここに説明を入れます。</td>
+</tr>
+<tr>
+<th>見出し</th>
+<td>ここに説明を入れます。</td>
+</tr>
+<tr>
+<th>見出し</th>
+<td>ここに説明を入れます。</td>
+</tr>
+</table>
+
+</section>
+
+</div>
+<!--/#main-->
+
+</div>
+<!--/#contents-->
+
+<footer>
+<small>Copyright&copy; <a href="index.html">居酒屋</a> All Rights Reserved.</small>
+<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+</footer>
+
+<!--배경 이미지2-->
+<aside id="mainimg">
+<div class="slide-sub2">slide-sub2</div>
+</aside>
+
+<!--페이지 상단으로 이동 버튼 (페이지 맨 위로 이동 버튼)-->
+<p class="nav-fix-pos-pagetop"><a href="#"><img src="images/icon_pagetop.png" alt="PAGE TOP"></a></p>
+
+<!--메뉴 열고 닫기 버튼-->
+<div id="menubar_hdr" class="close"></div>
+<!--메뉴의 열고 닫음 처리 조건 설정　900px 이하-->
+<script>
+if (OCwindowWidth() <= 900) {
+	open_close("menubar_hdr", "menubar-s");
+}
+</script>
+
+</body>
+</html>
