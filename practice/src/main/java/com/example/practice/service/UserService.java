@@ -21,24 +21,25 @@ public class UserService {
 	
 	private final UserRepository userrepository;
 	
+	/*회원가입*/
 	@Transactional
 	public void create(User user) {
 		UserEntity userEntity = UserEntity.builder()
 				.id(user.getId())
-				.username(user.getUsername())
+				.email(user.getEmail())
 				.password(user.getPassword())
 				.name(user.getName())
-				.email(user.getEmail())
-				.birth(user.getBirth())
+				.tel(user.getTel())
 				.build();
 		userrepository.save(userEntity);
 	}
-
+	
+	/*로그인*/
 	public User login(User user) {
-		Optional<UserEntity> byuserName = userrepository.findByUsername(user.getUsername());
+		Optional<UserEntity> byuserEmail = userrepository.findByEmail(user.getEmail());
 		
-		if(byuserName.isPresent()) {
-			UserEntity userEntity = byuserName.get();
+		if(byuserEmail.isPresent()) {
+			UserEntity userEntity = byuserEmail.get();
 			if(userEntity.getPassword().equals(user.getPassword())) {
 				return userEntity.toUser();
 			} else {
@@ -48,7 +49,8 @@ public class UserService {
 			return null;
 		}
 	}
-
+	
+	/*회원목록*/
 	public List<User> findAll() {
 		List<UserEntity> userEntityList = userrepository.findAll();
 		List<User> userList = new ArrayList<>();
@@ -57,7 +59,8 @@ public class UserService {
 		}
 		return userList;
 	}
-
+	
+	/*회원조회*/
 	public User findById(Long id) {
 		Optional<UserEntity> userEntity = userrepository.findById(id);
 		
@@ -67,6 +70,17 @@ public class UserService {
 		return null;
 	}
 	
+	/*이메일로 회원조회(회원가입 아이디 중복방지)*/
+	public User findByEmail(String email){
+		Optional<UserEntity> userEntity = userrepository.findByEmail(email);
+		
+		if(userEntity.isPresent()) {
+			return userEntity.get().toUser();
+		}
+		return null;
+	}
+	
+	/*회원정보수정*/
 	@Transactional
 	public void update(User user) {
 		Optional<UserEntity> byId = userrepository.findById(user.getId());
@@ -74,14 +88,14 @@ public class UserService {
 		if(byId.isPresent()) {
 			UserEntity userEntity = byId.get();
 			userEntity.update(user.getId(),
-							  user.getUsername(),
+							  user.getEmail(),
 							  user.getPassword(), 
 							  user.getName(), 
-							  user.getEmail(), 
-							  user.getBirth());
+							  user.getTel());
 		}
 	} 
 
+	/*회원탈퇴*/
 	@Transactional
 	public void deleteById(Long id) {
 		userrepository.deleteById(id);

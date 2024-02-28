@@ -22,8 +22,8 @@
 		  <tbody>
 		  	 <tr th:each="post: ${posts}">
 		     	<td th:text="${postStat.count}" scope="col"></td>
-		     	<td scope="col"><a th:href="@{|post/${post.id}|}" th:text="${post.title}"></a></td>
-		     	<td th:text="${post.user.username}" scope="col"></td>
+		     	<td scope="col"><a th:href="@{|${post.id}|}" th:text="${post.title}"></a></td>
+		     	<td th:text="${post.user.email}" scope="col"></td>
 		     	<td th:text="${post.createTime}"></td>
 		    </tr>
 		  </tbody>

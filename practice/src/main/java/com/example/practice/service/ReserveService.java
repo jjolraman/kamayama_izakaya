@@ -1,12 +1,13 @@
 package com.example.practice.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.example.practice.entity.PostEntity;
 import com.example.practice.entity.ReserveEntity;
-import com.example.practice.entity.UserEntity;
-import com.example.practice.model.Member;
 import com.example.practice.model.Reserve;
-import com.example.practice.model.User;
 import com.example.practice.repository.ReserveRepository;
 
 import jakarta.transaction.Transactional;
@@ -30,4 +31,14 @@ public class ReserveService {
 		
 		reserveRepository.save(reserveEntity);
 	}
+	
+	public List<Reserve> findReserve() {
+		List<ReserveEntity> reserveEntityList = reserveRepository.findAll();
+		List<Reserve> reserveList = new ArrayList<>();
+		for(ReserveEntity reserveEntity : reserveEntityList) {
+			reserveList.add(reserveEntity.toReserve());
+		}
+		return reserveList;
+	}
+
 }

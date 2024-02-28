@@ -68,4 +68,10 @@ public class PostEntity {
 		return build;
 	}
 	
+	/*게시물 수정(제목하고 내용만 바뀌니까)*/
+	public void update(String title, String content) {
+		this.title = title;
+		this.content = content;
+	}
+	
 }
