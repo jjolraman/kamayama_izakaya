@@ -28,6 +28,7 @@ public class UserController {
 	private final UserService userService;
 	private final UserRepository userRepository;
 	
+	//메인을 index로 변경 main쓰면 원상복구
 	@GetMapping()
 	public String main() {
 		return "index";
