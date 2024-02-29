@@ -8,7 +8,7 @@
 | 이름   | 깃허브                                  | 역할 |
 | ------ | ---------------------------------       | ---- |
 | ヤンジンギュ | https://github.com/jjolraman            |      |
-| 이재익 | https://github.com/okachimachi0522      |      |
+| イ・ジェイク | https://github.com/okachimachi0522      |      |
 | 김승환 | https://github.com/abss7401             |      |
 
 ## 1. サービス概要
