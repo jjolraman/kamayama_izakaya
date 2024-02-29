@@ -16,6 +16,8 @@
 		<item key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
 		<item key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID" value="true"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\PC\Desktop\main v6-3.zip"/>
+			<item value="C:\Users\PC\Desktop\main v6-2.zip"/>
 			<item value="C:\Users\PC\Desktop\IzakayaV2-1.zip"/>
 			<item value="IzakayaV2-1.zip"/>
 		</list>

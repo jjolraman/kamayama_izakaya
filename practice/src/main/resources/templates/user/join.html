@@ -3,14 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<style>
+    body {
+        font-family: Arial, sans-serif; 
+        background-color: #ffffff; 
+        color: #000000; 
+    }
+    form {
+        width: 300px; 
+        margin: 0 auto; /* 가운데 정렬 */
+        padding: 20px;
+        border: 2px solid #ffa500; /* 주황색 테두리 */
+        border-radius: 10px; /* 둥근 테두리 */
+        background-color: #f8f8f8; /* 회색 배경색 */
+    }
+    input[type="email"],
+    input[type="password"],
+    input[type="text"],
+    input[type="tel"],
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ffa500; /* 주황색 테두리 */
+        border-radius: 5px; /* 둥근 테두리 */
+        font-size: 16px;
+        box-sizing: border-box; /* 패딩과 테두리 포함하여 너비 계산 */
+    }
+    input[type="submit"] {
+        background-color: #ff5733; 
+        color: #ffffff; 
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #e24424; 
+    }
+    .error-message {
+        color: red;
+        font-size: 14px;
+    }
+</style>
 </head>
 <body>
-<form action="join" method="post">
-	이메일: <input type="email" name="email"><br>
-	비밀번호: <input type="password" name="password"><br>
-	이름: <input type="text" name="name"><br>
-	전화번호: <input type="tel" name="tel"><br>
-	<input type="submit" value="회원가입">
+<form action="join" method="post" id="signup-form">
+    メールアドレス: <input type="email" name="email" id="email"><span class="error-message" id="email-error"></span><br>
+    パスワード: <input type="password" name="password" id="password"><span class="error-message" id="password-error"></span><br>
+    お名前: <input type="text" name="name" id="name"><span class="error-message" id="name-error"></span><br>
+    電話番語: <input type="tel" name="tel" id="tel"><span class="error-message" id="tel-error"></span><br>
+    <input type="submit" value="회원가입" id="submit-button">
 </form>
+
+<script>
+    const form = document.getElementById('signup-form');
+    const emailField = document.getElementById('email');
+    const passwordField = document.getElementById('password');
+    const nameField = document.getElementById('name');
+    const telField = document.getElementById('tel');
+    const submitButton = document.getElementById('submit-button');
+
+    form.addEventListener('submit', function(event) {
+        if (!validateEmail(emailField.value)) {
+            document.getElementById('email-error').textContent = '正しいメールアドレスを入力してください。';
+            event.preventDefault();
+        }
+        if (!validatePassword(passwordField.value)) {
+            document.getElementById('password-error').textContent = 'パスワードは6文字以上必要です。';
+            event.preventDefault();
+        }
+        if (!validateName(nameField.value)) {
+            document.getElementById('name-error').textContent = '名前を入力してください。';
+            event.preventDefault();
+        }
+        if (!validateTel(telField.value)) {
+            document.getElementById('tel-error').textContent = '電話番語を入力してください。';
+            event.preventDefault();
+        }
+    });
+
+    function validateEmail(email) {
+        // 이메일 유효성 검사 로직 추가
+        return /\S+@\S+\.\S+/.test(email);
+    }
+
+    function validatePassword(password) {
+        // 비밀번호 길이 유효성 검사 로직 추가
+        return password.length >= 6;
+    }
+
+    function validateName(name) {
+        // 이름 입력 여부 확인
+        return name.trim() !== '';
+    }
+
+    function validateTel(tel) {
+        // 전화번호 입력 여부 확인
+        return tel.trim() !== '';
+    }
+
+    // 입력 필드를 떠날 때마다 에러 메시지를 제거합니다.
+    emailField.addEventListener('blur', clearErrorMessage.bind(null, 'email-error'));
+    passwordField.addEventListener('blur', clearErrorMessage.bind(null, 'password-error'));
+    nameField.addEventListener('blur', clearErrorMessage.bind(null, 'name-error'));
+    telField.addEventListener('blur', clearErrorMessage.bind(null, 'tel-error'));
+
+    function clearErrorMessage(id) {
+        document.getElementById(id).textContent = '';
+    }
+</script>
 </body>
 </html>
+
