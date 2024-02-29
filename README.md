@@ -9,7 +9,7 @@
 | ------ | ---------------------------------       | ---- |
 | ヤンジンギュ | https://github.com/jjolraman            |      |
 | イ・ジェイク | https://github.com/okachimachi0522      |      |
-| 김승환 | https://github.com/abss7401             |      |
+| キム·スンファン | https://github.com/abss7401             |      |
 
 ## 1. サービス概要
 
