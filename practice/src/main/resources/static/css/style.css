@@ -71,7 +71,7 @@ header {
 	animation-fill-mode: both;
 	animation-duration: 0.3s;		/*アニメーションを実行する時間。「s」は秒の事。*/
 	animation-iteration-count:1;	/*実行する回数。*/
-	animation-delay: 4.5s;			/*アニメーションの開始を遅らせる指定。秒。*/
+	animation-delay: 2s;			/*アニメーションの開始を遅らせる指定。秒。*/
 	animation-name: frame1;			/*冒頭の「@keyframes」につけている名前*/
 }
 /*ヘッダーにマウスオンした場合*/
@@ -134,7 +134,7 @@ ul.icon img {
 	animation-fill-mode: both;
 	animation-duration: 0.3s;		/*実行する時間。「s」は秒の事。*/
 	animation-iteration-count:1;	/*実行する回数。*/
-	animation-delay: 4.5s;			/*アニメーションの開始を遅らせる指定。秒。*/
+	animation-delay: 2s;			/*アニメーションの開始を遅らせる指定。秒。*/
 	animation-name: frame1;			/*冒頭の「@keyframes」につけている名前*/
 	bottom: 50px;	/*下からのブロックの配置指定*/
 }

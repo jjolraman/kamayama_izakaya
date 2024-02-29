@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>ログイン</title>
+    <title>로그인</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,7 +47,7 @@
         }
         button:hover {
             background-color: #e24424;
-                    }
+        }
         .warning {
             color: red;
             font-size: 12px;
@@ -67,7 +67,16 @@
                 document.getElementById("warning").innerText = "ログインIDとパスワードは必須項目です。";
                 return false;
             }
+            
+            // 로그인 성공시 알림창 나온후 닫음.
+            alert("ログインに成功しました。");
+            closePopup();
             return true;
+        }
+
+        function closePopup() {
+            // 팝업 닫는 코드.
+            window.close();
         }
     </script>
 </head>
