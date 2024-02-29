@@ -1,9 +1,7 @@
 
 > 이자카야 예약 사이트
 
-<div align="center">
-  <img src="https://img.shields.io/badge/node-16.17.0-339933?logo=node.js">
-</div>
+
 
 ## 👨‍👩‍👧 작업 구성원
 
