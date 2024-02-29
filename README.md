@@ -29,7 +29,11 @@
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 </div>
 
-### 1. 기능 목록
+### 1. 機能リスト
+- 会員登録/ログイン
+- 会員/非会員価格差の実装
+- 予約・予約の変更・キャンセル
+- 予約結果メール送信
 
 ### 2. ERD
 
