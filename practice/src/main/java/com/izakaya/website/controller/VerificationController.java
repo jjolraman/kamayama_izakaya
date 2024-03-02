@@ -22,7 +22,7 @@ public class VerificationController {
         if (result) {
             return "redirect:/login"; // 회원가입이 성공적으로 완료되었을 때 로그인 페이지로 리다이렉트
         } else {
-            return "redirect:/signup"; // 회원가입 인증에 실패했을 때 회원가입 페이지로 리다이렉트
+            return "redirect:/join"; // 회원가입 인증에 실패했을 때 회원가입 페이지로 리다이렉트
         }
     }
 }

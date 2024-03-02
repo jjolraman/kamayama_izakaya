@@ -30,7 +30,6 @@ public class User {
                 .password(password)
                 .name(name)
                 .email(email)
-                .birth(birth)
                 .verificationToken(verificationToken) // 인증 토큰 추가
                 .build();
         return build;
@@ -44,7 +43,6 @@ public class User {
         this.password = password;
         this.name = name;
         this.email = email;
-        this.birth = birth;
         this.verificationToken = verificationToken; // 생성자에 인증 토큰 추가
     }
 }

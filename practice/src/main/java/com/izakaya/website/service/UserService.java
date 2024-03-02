@@ -37,7 +37,6 @@ public class UserService {
                 .password(user.getPassword())
                 .name(user.getName())
                 .email(user.getEmail())
-                .birth(user.getBirth())
                 .verificationToken(verificationToken)
                 .enabled(false)
                 .build();
