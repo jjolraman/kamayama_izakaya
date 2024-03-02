@@ -24,7 +24,7 @@ public class User {
     private String verificationToken; // 인증 토큰 추가
 
     public UserEntity toEntity() {
-        UserEntity build = UserEntity.builder()
+        return UserEntity.builder()
                 .id(id)
                 .username(username)
                 .password(password)
@@ -32,17 +32,16 @@ public class User {
                 .email(email)
                 .verificationToken(verificationToken) // 인증 토큰 추가
                 .build();
-        return build;
     }
 
     @Builder
-    public User(Long id, String username, String password
-            , String name, String email, LocalDate birth, String verificationToken) { // 생성자에 인증 토큰 추가
+    public User(Long id, String username, String password, String name, String email, LocalDate birth, String verificationToken) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
+        this.birth = birth;
         this.verificationToken = verificationToken; // 생성자에 인증 토큰 추가
     }
 }

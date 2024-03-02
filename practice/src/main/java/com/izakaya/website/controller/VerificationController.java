@@ -1,13 +1,13 @@
 package com.izakaya.website.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.izakaya.website.service.UserService;
 
-@RestController
+@Controller
 public class VerificationController {
 
     private final UserService userService;
@@ -20,9 +20,13 @@ public class VerificationController {
     public String verifyEmail(@PathVariable String token, RedirectAttributes redirectAttributes) {
         boolean result = userService.verifyEmail(token, redirectAttributes);
         if (result) {
-            return "redirect:/login"; // 회원가입이 성공적으로 완료되었을 때 로그인 페이지로 리다이렉트
+            redirectAttributes.addFlashAttribute("successMessage", "회원가입이 성공적으로 완료되었습니다. 이제 로그인해주세요!");
+            // 인증 메일이 발송되면 팝업 창을 닫기 위해 JavaScript를 호출
+            redirectAttributes.addFlashAttribute("closePopup", true);
+            return "redirect:/login";
         } else {
-            return "redirect:/join"; // 회원가입 인증에 실패했을 때 회원가입 페이지로 리다이렉트
+            redirectAttributes.addFlashAttribute("errorMessage", "회원가입 인증에 실패했습니다. 유효하지 않은 토큰입니다.");
+            return "redirect:/join";
         }
     }
 }

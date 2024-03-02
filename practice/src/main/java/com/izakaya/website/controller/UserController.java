@@ -1,3 +1,5 @@
+// UserController.java
+
 package com.izakaya.website.controller;
 
 import java.util.List;
@@ -20,9 +22,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RequestMapping("/")
-@RequiredArgsConstructor
 @Controller
+@RequiredArgsConstructor
+@RequestMapping("/")
 public class UserController {
     private final UserService userService;
 
@@ -45,19 +47,21 @@ public class UserController {
     }
 
     @GetMapping("login")
-    public String loginForm() {
+    public String loginForm(Model model) {
+        model.addAttribute("user", new User());
         return "user/login";
     }
 
     @PostMapping("login")
-    public String login(@ModelAttribute User user, HttpSession session) {
-        User loginResult = userService.login(user);
+    public String login(@ModelAttribute User user, HttpSession session, RedirectAttributes redirectAttributes) {
+        User loginResult = userService.login(user.getEmail(), user.getPassword());
         if (loginResult != null) {
             session.setAttribute("loginUser", loginResult);
             log.info("loginUser: {}", loginResult);
             return "redirect:/";
         } else {
-            return "user/login";
+            redirectAttributes.addFlashAttribute("error", "이메일 또는 비밀번호가 올바르지 않습니다.");
+            return "redirect:/login";
         }
     }
 

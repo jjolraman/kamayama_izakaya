@@ -46,64 +46,62 @@
 </head>
 <body>
 <form action="join" method="post" id="signup-form">
-    이메일: <input type="email" name="email" id="email"><span class="error-message" id="email-error"></span><br>
-    비밀번호: <input type="password" name="password" id="password"><span class="error-message" id="password-error"></span><br>
-    이름: <input type="text" name="name" id="name"><span class="error-message" id="name-error"></span><br>
-    전화번호: <input type="tel" name="tel" id="tel"><span class="error-message" id="tel-error"></span><br>
-    <input type="submit" value="회원가입" id="submit-button">
+    メールアドレス: <input type="email" name="email" id="email" required><span class="error-message" id="email-error"></span><br>
+    パスワード: <input type="password" name="password" id="password" required><span class="error-message" id="password-error"></span><br>
+    お名前: <input type="text" name="name" id="name" required><span class="error-message" id="name-error"></span><br>
+    電話番語: <input type="tel" name="tel" id="tel" placeholder="例: 01012345678" required><span class="error-message" id="tel-error"></span><br>
+    <input type="submit" value="会員登録" id="submit-button">
 </form>
 
 <script>
-    const form = document.getElementById('signup-form');
-    const emailField = document.getElementById('email');
-    const passwordField = document.getElementById('password');
-    const nameField = document.getElementById('name');
-    const telField = document.getElementById('tel');
-    const submitButton = document.getElementById('submit-button');
+    // 회원가입 버튼을 클릭했을 때 실행되는 함수
+    document.getElementById('submit-button').addEventListener('click', function(event) {
+        // 각 입력 필드의 값을 가져옴
+        var userEmail = document.getElementById('email').value;
+        var userPassword = document.getElementById('password').value;
+        var userName = document.getElementById('name').value;
+        var userTel = document.getElementById('tel').value;
 
-    form.addEventListener('submit', function(event) {
-        if (!validateEmail(emailField.value)) {
-            document.getElementById('email-error').textContent = '올바른 이메일을 입력하세요.';
+        // 이메일 주소 유효성 검사
+        if (!userEmail.includes('@')) {
             event.preventDefault();
+            document.getElementById('email-error').innerText = 'メールアドレスには "@" を含める必要があります。';
+        } else {
+            document.getElementById('email-error').innerText = '';
         }
-        if (!validatePassword(passwordField.value)) {
-            document.getElementById('password-error').textContent = '비밀번호는 6자 이상이어야 합니다.';
+
+        // 비밀번호 유효성 검사
+        if (userPassword.length < 6) {
             event.preventDefault();
+            document.getElementById('password-error').innerText = 'パスワードは最低6文字以上である必要があります。';
+        } else {
+            document.getElementById('password-error').innerText = '';
         }
-        if (!validateName(nameField.value)) {
-            document.getElementById('name-error').textContent = '이름을 입력하세요.';
+
+        // 이름 유효성 검사 (숫자와 특수문자가 들어가지 않아야 함)
+        if (/\d/.test(userName) || /[~!@#$%^&*()_+|<>?:{}]/.test(userName)) {
             event.preventDefault();
+            document.getElementById('name-error').innerText = '名前には数字や記号を含めることはできません。';
+        } else {
+            document.getElementById('name-error').innerText = '';
         }
-        if (!validateTel(telField.value)) {
-            document.getElementById('tel-error').textContent = '전화번호를 입력하세요.';
+
+        // 전화번호 유효성 검사 (숫자로만 이루어져 있어야 함)
+        if (!/^\d{11}$/.test(userTel)) {
             event.preventDefault();
+            document.getElementById('tel-error').innerText = '電話番号の形式が正しくありません。例のように入力してください。';
+        } else {
+            document.getElementById('tel-error').innerText = '';
+        }
+
+        // 모든 필드가 유효한 경우 팝업 창을 띄우고 페이지를 닫음
+        if (!document.querySelectorAll('.error-message').length) {
+            setTimeout(function() {
+                alert('入力されたメールアドレスは「 "' + userEmail + '」 です。ご確認してください。');
+                window.close();
+            }, 3000);
         }
     });
-
-    function validateEmail(email) {
-        return /\S+@\S+\.\S+/.test(email);
-    }
-
-    function validatePassword(password) {
-        return password.length >= 6;
-    }
-
-    function validateName(name) {
-        return name.trim() !== '';
-    }
-
-    function validateTel(tel) {
-        return tel.trim() !== '';
-    }
-
-    emailField.addEventListener('blur', clearErrorMessage.bind(null, 'email-error'));
-    passwordField.addEventListener('blur', clearErrorMessage.bind(null, 'password-error'));
-    nameField.addEventListener('blur', clearErrorMessage.bind(null, 'name-error'));
-    telField.addEventListener('blur', clearErrorMessage.bind(null, 'tel-error'));
-
-    function clearErrorMessage(id) {
-        document.getElementById(id).textContent = '';
-    }
 </script>
 </body>
 </html>

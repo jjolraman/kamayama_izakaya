@@ -79,6 +79,10 @@
             <input type="password" id="password" name="password" placeholder="パスワード">
             <button type="submit">ログイン</button>
             <div id="warning" class="warning"></div>
+            <!-- 로그인 실패 시 오류 메시지 표시 -->
+            <c:if test="${not empty error}">
+                <div class="warning">${error}</div>
+            </c:if>
         </form>
         <a href="join" class="signup-link">会員登録</a>
     </div>

@@ -1,3 +1,5 @@
+// UserService.java
+
 package com.izakaya.website.service;
 
 import java.util.ArrayList;
@@ -23,14 +25,13 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Service
 public class UserService {
-    
+
     private final UserRepository userRepository;
     private final JavaMailSender javaMailSender;
 
     @Transactional
     public void create(User user) {
-        String verificationToken = generateVerificationToken(); // 인증 토큰 생성
-
+        String verificationToken = generateVerificationToken();
         UserEntity userEntity = UserEntity.builder()
                 .id(user.getId())
                 .username(user.getUsername())
@@ -41,30 +42,24 @@ public class UserService {
                 .enabled(false)
                 .build();
         userRepository.save(userEntity);
-        
-        // 이메일 전송 코드 추가
         sendVerificationEmail(user.getEmail(), verificationToken);
     }
 
-    public User login(User user) {
-        Optional<UserEntity> byUserName = userRepository.findByUsername(user.getUsername());
-        
-        if(byUserName.isPresent()) {
-            UserEntity userEntity = byUserName.get();
-            if(userEntity.getPassword().equals(user.getPassword())) {
+    public User login(String username, String password) {
+        Optional<UserEntity> optionalUser = userRepository.findByUsername(username);
+        if (optionalUser.isPresent()) {
+            UserEntity userEntity = optionalUser.get();
+            if (userEntity.getPassword().equals(password)) {
                 return userEntity.toUser();
-            } else {
-                return null;
             }
-        } else {
-            return null;
         }
+        return null;
     }
 
     public List<User> findAll() {
         List<UserEntity> userEntityList = userRepository.findAll();
         List<User> userList = new ArrayList<>();
-        for(UserEntity userEntity : userEntityList) {
+        for (UserEntity userEntity : userEntityList) {
             userList.add(userEntity.toUser());
         }
         return userList;
@@ -72,37 +67,34 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<UserEntity> userEntity = userRepository.findById(id);
-        
-        if(userEntity.isPresent()) {
+        if (userEntity.isPresent()) {
             return userEntity.get().toUser();
         }
         return null;
     }
-    
+
     @Transactional
     public void update(User user) {
         Optional<UserEntity> byId = userRepository.findById(user.getId());
-        
-        if(byId.isPresent()) {
+        if (byId.isPresent()) {
             UserEntity userEntity = byId.get();
             userEntity.update(user.getId(),
-                              user.getUsername(),
-                              user.getPassword(), 
-                              user.getName(), 
-                              user.getEmail(), 
-                              user.getBirth());
+                    user.getUsername(),
+                    user.getPassword(),
+                    user.getName(),
+                    user.getEmail(),
+                    user.getBirth());
         }
-    } 
+    }
 
     @Transactional
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
-    
+
     @Transactional
     public boolean verifyEmail(String emailToken, RedirectAttributes redirectAttributes) {
         Optional<UserEntity> optionalUser = userRepository.findByVerificationToken(emailToken);
-
         if (optionalUser.isPresent()) {
             UserEntity user = optionalUser.get();
             user.setEnabled(true);
@@ -114,16 +106,13 @@ public class UserService {
     }
 
     private String generateVerificationToken() {
-        return UUID.randomUUID().toString(); // 랜덤한 UUID를 생성하여 반환
+        return UUID.randomUUID().toString();
     }
 
     private void sendVerificationEmail(String to, String verificationToken) {
-        // 이메일 내용 설정
-    	String subject = "회원가입 인증 메일";
-    	String body = "회원가입을 완료하려면 아래 링크를 클릭하세요:\n";
-    	body += "http://127.0.0.1:9000/verify?token=" + verificationToken;
-
-        // 이메일 보내기
+        String subject = "회원가입 인증 메일";
+        String body = "회원가입을 완료하려면 아래 링크를 클릭하세요:\n";
+        body += "http://127.0.0.1:9000/verify?token=" + verificationToken;
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(subject);
