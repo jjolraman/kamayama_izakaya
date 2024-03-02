@@ -16,8 +16,9 @@
 		<item key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
 		<item key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID" value="true"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
-			<item value="C:\Users\PC\Desktop\IzakayaV2-1.zip"/>
-			<item value="IzakayaV2-1.zip"/>
+			<item value="C:\Users\PC\Desktop\로그인 로컬 만들기 직전V2.zip"/>
+			<item value="C:\Users\PC\Desktop\로그인 로컬 만들기 직전.zip"/>
+			<item value="C:\Users\PC\Desktop\로그인 미완성.zip"/>
 		</list>
 	</section>
 </section>
