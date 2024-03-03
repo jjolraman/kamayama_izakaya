@@ -1,14 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>login</title>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="email"],
+        input[type="password"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #ff5733;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e24424;
+        }
+        .warning {
+            color: red;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .signup-link {
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        function login() {
+            var username = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            if (username === "" || password === "") {
+                document.getElementById("warning").innerText = "ログインIDとパスワードは必須項目です。";
+                return false;
+            }
+            
+            // 로그인 성공시 알림창 나온후 닫음.
+            alert("ログインに成功しました。");
+            closePopup();
+            return true;
+        }
+
+        function closePopup() {
+            // 팝업 닫는 코드.
+            window.close();
+        }
+    </script>
 </head>
 <body>
-<form action="login" method="post">
-	아이디: <input type="text" name="username"><br>
-	비밀번호: <input type="password" name="password"><br>
-	<button type="submit">로그인</button>
-</form>
+    <div class="container">
+        <h2>ログイン</h2>
+        <form action="login" method="post" onsubmit="return login()">
+            <input type="email" id="email" name="email" placeholder="ログインID">
+            <input type="password" id="password" name="password" placeholder="パスワード">
+            <button type="submit">ログイン</button>
+            <div id="warning" class="warning"></div>
+        </form>
+        <a href="join" class="signup-link">会員登録</a>
+    </div>
 </body>
 </html>

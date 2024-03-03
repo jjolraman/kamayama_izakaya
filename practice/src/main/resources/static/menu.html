@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>居酒屋向け 無料ホームページテンプレート tp_izakaya5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="ここにサイト説明を入れます" />
+    <meta
+      name="keywords"
+      content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/inview.css" />
+    <script src="js/openclose.js"></script>
+    <script src="js/fixmenu_pagetop.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1 id="logo">
+        <a href="index.html"><img src="images/logo.png" alt="居酒屋" /></a>
+      </h1>
+      <!--PC用（901px以上端末）メニュー-->
+      <div id="menubar"></div>
+    </header>
+
+    <!--小さな端末用（900px以下端末）ブロック-->
+
+    <div id="contents">
+      <div id="main">
+        <section>
+          <h2 class="c">メニュー（横長box1タイプ）</h2>
+          <h3 class="c">transformの指定なし</h3>
+
+          <div class="box1">
+            <figure><img src="images/set_1.jpg" alt="メニュー名" /></figure>
+            <h4>set menu　3,000円</h4>
+            <p>
+              1번메뉴 <br />
+              메뉴설명입니다<br />
+              추후 좋아요 기능 추가..?
+            </p>
+            <span class="mark">人気</span>
+          </div>
+
+          <div class="box1">
+            <figure><img src="images/set_2.jpg" alt="メニュー名" /></figure>
+            <h4>set menu 2　3,000円</h4>
+            <p>
+              2번메뉴 <br />
+              메뉴설명입니다<br />
+              추후 좋아요 기능 추가..?
+            </p>
+            <span class="mark">人気</span>
+          </div>
+
+          <div class="box1">
+            <figure><img src="images/set_3.jpg" alt="メニュー名" /></figure>
+            <h4>メニュー名　XXX円</h4>
+            <p>
+              3번메뉴 <br />
+              메뉴설명입니다<br />
+              추후 좋아요 기능 추가..?
+            </p>
+            <span class="mark">人気</span>
+          </div>
+        </section>
+        <section class="ofh box up">
+          <h2 class="c">メニュー（テキストタイプ）</h2>
+
+          <div class="half">
+            <dl class="menu">
+              <dt>メニュータイトルをここに入れます。</dt>
+              <dd>
+                メニュー名をここに入れます。<span class="price">XXX円</span>
+              </dd>
+              <dd>
+                メニュー名をここに入れます。<span class="price">XXX円</span>
+              </dd>
+              <dd>
+                メニュー名をここに入れます。<span class="price">XXX円</span>
+              </dd>
+              <dt>メニュータイトルをここに入れます。</dt>
+              <dd>
+                メニュー名をここに入れます。<span class="price">XXX円</span>
+              </dd>
+              <dd>
+                メニュー名をここに入れます。<span class="price">XXX円</span>
+              </dd>
+              <dd>
+                メニュー名をここに入れます。<span class="price">XXX円</span>
+              </dd>
+            </dl>
+          </div>
+          <!--/.half-->
+
+          <div class="half">
+            <dl class="menu">
+              <dt>メニュータイトルをここに入れます。</dt>
+              <dd>メニュー名。<span class="price">XXX円</span></dd>
+              <dd>メニュー名。<span class="price">XXX円</span></dd>
+              <dt>メニュータイトルをここに入れます。</dt>
+              <dd>メニュー名。<span class="price">XXX円</span></dd>
+              <dd>メニュー名。<span class="price">XXX円</span></dd>
+            </dl>
+          </div>
+          <!--/.half-->
+        </section>
+
+        <section>
+          <h2>オリジナルのアニメーションを作りたい場合は</h2>
+          <p>
+            cssフォルダのinview.cssに、cssで動くアニメーションタグを追加します。<br />
+            css冒頭の「共通設定」の２箇所にも追加するのを忘れないようご注意下さい。
+          </p>
+          <p>
+            スタイルを追加したら、jsフォルダのjquery.invie_set.jsにタグを追加して下さい。<br />
+            既存のタグをコピペして、スタイル名を２箇所入れ替えればOKです。
+          </p>
+
+          <h3>transformのアニメーションが動作しない場合</h3>
+          <p>
+            htmlの下部に、<br />
+            <span class="color1"
+              >&lt;!--パララックス用ファイル読み込み--&gt;<br />
+              &lt;script
+              src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js&quot;&gt;&lt;/script&gt;<br />
+              &lt;script
+              src=&quot;https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js&quot;&gt;&lt;/script&gt;<br />
+              &lt;script
+              src=&quot;js/jquery.inview_set.js&quot;&gt;&lt;/script&gt;</span
+            ><br />
+            のタグがあるか確認して下さい。
+          </p>
+          <p>
+            httpsから始まるurlは将来リンク切れを起こす可能性もあります。その際は改めて「jQuery
+            CDN」などでネット検索し、新しいurlに置き換えて下さい。
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <footer>
+      <small
+        >Copyright&copy; <a href="index.html">居酒屋</a> All Rights
+        Reserved.</small
+      >
+      <span class="pr"
+        ><a href="https://template-party.com/" target="_blank"
+          >《Web Design:Template-Party》</a
+        ></span
+      >
+    </footer>
+
+    <!--背景画像2-->
+    <aside id="mainimg">
+      <div class="slide-sub2">slide-sub2</div>
+    </aside>
+
+    <!--PAGE TOPボタン（ページの上部へ戻るボタン）-->
+    <p class="nav-fix-pos-pagetop">
+      <a href="#"><img src="images/icon_pagetop.png" alt="PAGE TOP" /></a>
+    </p>
+
+    <!--メニュー開閉ボタン-->
+    <div id="menubar_hdr" class="close"></div>
+
+    <!--パララックス用ファイル読み込み-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+    <script src="js/jquery.inview_set.js"></script>
+    <script src="js/menu.js"></script>
+  </body>
+</html>
