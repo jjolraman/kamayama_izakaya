@@ -1,8 +1,5 @@
 package com.example.practice.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import com.example.practice.entity.ReserveEntity;
 
 import lombok.Builder;
@@ -13,16 +10,17 @@ import lombok.NoArgsConstructor;
 @Data
 public class Reserve {
 	private Long id;
-//	private User user;
+	private User user;
 	private int person;
 //	private Menu menu;
-	private LocalDate date;
+	private String date;
 	private String time;
 	private Member member;
 	
 	public ReserveEntity toEntity() {
 		ReserveEntity build = ReserveEntity.builder()
 				.id(id)
+				.user(user.toEntity())
 				.person(person)
 //				.menu(menu)
 				.date(date)
@@ -33,9 +31,10 @@ public class Reserve {
 	}
 	
 	@Builder
-	public Reserve(Long id, int person,
-			LocalDate date, String time, Member member) {
+	public Reserve(Long id, int person, User user,
+			String date, String time, Member member) {
 		this.id = id;
+		this.user = user;
 		this.person = person;
 //		this.menu = menu;
 		this.date = date;

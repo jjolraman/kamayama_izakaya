@@ -14,6 +14,7 @@ public class User {
 	private String password;
 	private String name;
 	private String tel;
+	private Member member;
 	
 	public UserEntity toEntity() {
 		UserEntity build = UserEntity.builder()
@@ -28,11 +29,12 @@ public class User {
 	
 	@Builder
 	public User(Long id, String email, String password
-			, String name, String tel) {
+			, String name, String tel, Member member) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.name = name;
 		this.tel = tel;
+		this.member = member;
 	}
 }

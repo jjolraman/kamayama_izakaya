@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.practice.entity.UserEntity;
+import com.example.practice.model.Member;
 import com.example.practice.model.User;
 import com.example.practice.repository.UserRepository;
 
@@ -24,12 +25,20 @@ public class UserService {
 	/*회원가입*/
 	@Transactional
 	public void create(User user) {
+		
+	Member memberStatus = Member.Member; // 기본값을 MEMBER로 설정
+
+    if (user.getPassword() == null || user.getPassword().isEmpty()) {
+	        memberStatus = Member.NonMember; // password가 없으면 NONMEMBER로 설정
+    }
+
 		UserEntity userEntity = UserEntity.builder()
 				.id(user.getId())
 				.email(user.getEmail())
 				.password(user.getPassword())
 				.name(user.getName())
 				.tel(user.getTel())
+				.member(memberStatus)
 				.build();
 		userrepository.save(userEntity);
 	}

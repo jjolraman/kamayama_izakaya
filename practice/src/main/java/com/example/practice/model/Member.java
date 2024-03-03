@@ -7,9 +7,9 @@ public enum Member {
 	Member("회원"),
 	NonMember("비회원");
 	
-	private final String dsescription;
+	private final String description;
 	
 	Member(String desciption) {
-		this.dsescription = desciption;
+		this.description = desciption;
 	}
 }

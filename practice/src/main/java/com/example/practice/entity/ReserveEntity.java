@@ -1,26 +1,20 @@
 package com.example.practice.entity;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.example.practice.model.Member;
 import com.example.practice.model.Menu;
 import com.example.practice.model.Reserve;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
+import com.example.practice.model.User;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,14 +30,15 @@ public class ReserveEntity {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name="reserve_id")
 	private Long id;
-//	private User user;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "users_id")
+	private UserEntity user;
 	@Column
 	private int person;
 //	@Column
 //	private Menu menu;
 	@Column(name="reserve_date")
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private LocalDate date;
+	private String date;
 	@Column
 	private String time;
 	@Column
@@ -51,9 +46,10 @@ public class ReserveEntity {
 	private Member member;
 	
 	@Builder
-	public ReserveEntity(Long id, int person, 
-			LocalDate date, String time, Member member) {
+	public ReserveEntity(Long id, int person, UserEntity user,
+			String date, String time, Member member) {
 		this.id = id;
+		this.user = user;
 		this.person = person;
 //		this.menu = menu;
 		this.date = date;
@@ -62,8 +58,13 @@ public class ReserveEntity {
 	}
 	
 	public Reserve toReserve() {
+		User convertedUser = null;
+		if (user != null) {
+	        convertedUser = user.toUser(); // user가 null이 아닐 때만 변환 실행
+	    }
 		Reserve build = Reserve.builder()
 				.id(id)
+				.user(convertedUser)
 				.person(person)
 //				.menu(menu)
 				.date(date)

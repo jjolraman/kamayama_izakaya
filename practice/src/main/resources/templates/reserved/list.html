@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>예약수정</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav th:replace="~{navbar :: navbarFragment}"></nav>
+<table class="table">
+	<tr>
+		<th>이름</th>
+		<th>인원</th>
+		<th>날짜</th>
+		<th>시간</th>
+		<th>예약</th>
+		<th></th>
+	</tr>
+	<tr th:each="reserve: ${reserves}">
+		<td th:text="${reserve.user.name}"></td>
+		<td th:text="${reserve.person}"></td>
+		<td th:text="${reserve.date}"></td>
+		<td th:text="${reserve.time}"></td>
+		<td colspan="2">
+			<a th:href="@{|update/${reserve.id}|}">예약변경</a>
+		</td>
+		<td>
+			<a th:href="@{|delete/${reserve.id}|}">예약취소</a>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
