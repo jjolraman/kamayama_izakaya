@@ -15,7 +15,7 @@
         <!-- Page content-->
         <div class="container">
             <div class="text-center mt-5" >
-                <h1 th:if="${session.loginUser}" th:text="|${session.loginUser.email}님 환영합니다.|"></h1>
+                <h1 th:if="${session.loginUser}" th:text="|${session.loginUser.username}님 환영합니다.|"></h1>
 				<h1 th:unless="${session.loginUser}">ログインしてください。</h1>
             </div>
         </div>
