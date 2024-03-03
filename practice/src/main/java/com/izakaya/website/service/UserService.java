@@ -82,8 +82,7 @@ public class UserService {
                     user.getUsername(),
                     user.getPassword(),
                     user.getName(),
-                    user.getEmail(),
-                    user.getBirth());
+                    user.getEmail());
         }
     }
 
@@ -110,9 +109,17 @@ public class UserService {
     }
 
     private void sendVerificationEmail(String to, String verificationToken) {
-        String subject = "회원가입 인증 메일";
-        String body = "회원가입을 완료하려면 아래 링크를 클릭하세요:\n";
-        body += "http://127.0.0.1:9000/verify?token=" + verificationToken;
+        String subject = "会員登録のお知らせ";
+        String body = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
+        body += "この度、イザカヤホームページにご登録いただきありがとうございます。\n\n";
+        body += "会員登録を完了するために、以下のリンクをクリックしてください。\n\n";
+        body += "http://127.0.0.1:9000/verify?token=" + verificationToken + "\n\n";
+        body += "リンクの有効期限は24時間です。期限内にクリックしてください。\n\n";
+        body += "※リンクが無効になった場合は、お手数ですが再度登録手続きをお願いいたします。\n\n";
+        body += "お問い合わせがある場合は、下記の連絡先までご連絡ください。\n\n";
+        body += "お問い合わせ先：support@izakaya.co.jp\n\n";
+        body += "会員登録の完了をお待ちしております。ありがとうございました。\n\n";
+        body += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(subject);

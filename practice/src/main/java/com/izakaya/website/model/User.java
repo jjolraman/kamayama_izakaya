@@ -20,7 +20,6 @@ public class User {
     private String password;
     private String name;
     private String email;
-    private LocalDate birth;
     private String verificationToken; // 인증 토큰 추가
 
     public UserEntity toEntity() {
@@ -41,7 +40,6 @@ public class User {
         this.password = password;
         this.name = name;
         this.email = email;
-        this.birth = birth;
         this.verificationToken = verificationToken; // 생성자에 인증 토큰 추가
     }
 }
