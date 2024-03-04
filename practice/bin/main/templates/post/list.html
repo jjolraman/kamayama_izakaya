@@ -14,16 +14,16 @@
 		  <thead class="table-light">
 		    <tr>
 		      <th scope="col">#</th>
-		      <th scope="col">제목</th>
-		      <th scope="col">작성자</th>
-		      <th scope="col">등록일</th>
+		      <th scope="col">タイトル</th>
+		      <th scope="col">作成者</th>
+		      <th scope="col">掲示日</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		  	 <tr th:each="post: ${posts}">
 		     	<td th:text="${postStat.count}" scope="col"></td>
-		     	<td scope="col"><a th:href="@{|post/${post.id}|}" th:text="${post.title}"></a></td>
-		     	<td th:text="${post.user.username}" scope="col"></td>
+		     	<td scope="col"><a th:href="@{|${post.id}|}" th:text="${post.title}"></a></td>
+		     	<td th:text="${post.user.email}" scope="col"></td>
 		     	<td th:text="${post.createTime}"></td>
 		    </tr>
 		  </tbody>

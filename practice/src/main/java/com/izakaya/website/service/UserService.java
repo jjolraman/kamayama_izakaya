@@ -1,5 +1,3 @@
-// UserService.java
-
 package com.izakaya.website.service;
 
 import java.util.ArrayList;
@@ -34,10 +32,11 @@ public class UserService {
         String verificationToken = generateVerificationToken();
         UserEntity userEntity = UserEntity.builder()
                 .id(user.getId())
-                .username(user.getUsername())
+//                .username(user.getUsername())
+                .email(user.getEmail())
                 .password(user.getPassword())
                 .name(user.getName())
-                .email(user.getEmail())
+                .tel(user.getTel())
                 .verificationToken(verificationToken)
                 .enabled(false)
                 .build();
@@ -45,16 +44,31 @@ public class UserService {
         sendVerificationEmail(user.getEmail(), verificationToken);
     }
 
-    public User login(String username, String password) {
-        Optional<UserEntity> optionalUser = userRepository.findByUsername(username);
-        if (optionalUser.isPresent()) {
-            UserEntity userEntity = optionalUser.get();
-            if (userEntity.getPassword().equals(password)) {
-                return userEntity.toUser();
-            }
-        }
-        return null;
-    }
+//    public User login(String username, String password) {
+//        Optional<UserEntity> optionalUser = userRepository.findByEmail(user.getEmail());
+//        if (optionalUser.isPresent()) {
+//            UserEntity userEntity = optionalUser.get();
+//            if (userEntity.getPassword().equals(password)) {
+//                return userEntity.toUser();
+//            }
+//        }
+//        return null;
+//    }
+    
+    public User login(User user) {
+		Optional<UserEntity> byuserEmail = userRepository.findByEmail(user.getEmail());
+		
+		if(byuserEmail.isPresent()) {
+			UserEntity userEntity = byuserEmail.get();
+			if(userEntity.getPassword().equals(user.getPassword())) {
+				return userEntity.toUser();
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
 
     public List<User> findAll() {
         List<UserEntity> userEntityList = userRepository.findAll();
@@ -65,13 +79,22 @@ public class UserService {
         return userList;
     }
 
-    public User findById(Long id) {
-        Optional<UserEntity> userEntity = userRepository.findById(id);
-        if (userEntity.isPresent()) {
-            return userEntity.get().toUser();
-        }
-        return null;
-    }
+//    public User findById(Long id) {
+//        Optional<UserEntity> userEntity = userRepository.findById(id);
+//        if (userEntity.isPresent()) {
+//            return userEntity.get().toUser();
+//        }
+//        return null;
+//    }
+    
+    public User findByEmail(String email){
+		Optional<UserEntity> userEntity = userRepository.findByEmail(email);
+		
+		if(userEntity.isPresent()) {
+			return userEntity.get().toUser();
+		}
+		return null;
+	}
 
     @Transactional
     public void update(User user) {
@@ -79,7 +102,8 @@ public class UserService {
         if (byId.isPresent()) {
             UserEntity userEntity = byId.get();
             userEntity.update(user.getId(),
-                    user.getUsername(),
+//                    user.getUsername(),
+            		user.getEmail(),
                     user.getPassword(),
                     user.getName(),
                     user.getEmail());

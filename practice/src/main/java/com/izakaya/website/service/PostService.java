@@ -25,12 +25,13 @@ public class PostService {
 	private final PostRepository postRepository;
 	private final UserRepository userRepository;
 	
+	/*게시글 생성*/
 	@Transactional
 	public void create(Post post) {
-			Optional<UserEntity> byId = userRepository.findById(post.getUser().getId());
+			Optional<UserEntity> userById = userRepository.findById(post.getUser().getId());
 			
-			if(byId.isPresent()) {
-				UserEntity userEntity = byId.get();
+			if(userById.isPresent()) {
+				UserEntity userEntity = userById.get();
 				
 				PostEntity postEntity = PostEntity.builder()
 						.id(post.getId())
@@ -45,7 +46,7 @@ public class PostService {
 		
 		    
 	}
-
+	/*게시글 목록*/
 	public List<Post> findAll() {
 		List<PostEntity> postEntityList = postRepository.findAll();
 		List<Post> postList = new ArrayList<>();
@@ -54,5 +55,38 @@ public class PostService {
 		}
 		return postList;
 	}
-
+	
+	/*게시글 조회*/
+	public Post findById(Long id) {
+		Optional<PostEntity> postById = postRepository.findById(id);
+		
+		if(postById.isPresent()) {
+			return postById.get().toPost();
+		}
+		return null;
+	}
+	
+	/*게시글 삭제*/
+	@Transactional
+	public void removePost(Long postId, User logUser) {
+		Optional<PostEntity> postById = postRepository.findById(postId);
+		
+		if(postById.isPresent()) {
+			PostEntity postEntity = postById.get();
+			postRepository.delete(postEntity);
+		}	
+	}
+	
+	/*게시글 수정*/
+	@Transactional
+	public void editPost(Post post, Long postId) {
+		Optional<PostEntity> postById = postRepository.findById(postId);
+		
+		if(postById.isPresent()) {
+			PostEntity postEntity = postById.get();
+			postEntity.update(post.getTitle(), post.getContent());
+			
+			postRepository.save(postEntity);
+		}
+	}
 }

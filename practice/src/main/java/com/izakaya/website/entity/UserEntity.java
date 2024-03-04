@@ -29,8 +29,8 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column
     private Long id;
-    @Column(unique = true)
-    private String username;
+//    @Column(unique = true)
+//    private String username;
     @Column
     private String password;
     @Column
@@ -38,21 +38,24 @@ public class UserEntity {
     @Column
     private String email;
     @Column
+	private String tel;
+    @Column
     private String verificationToken; // 이메일 인증을 위한 토큰 필드 추가
     @Column
     private boolean enabled; // 사용자의 활성화 상태를 나타내는 필드
     
-    @OneToMany(mappedBy = "user")
-    private List<PostEntity> posts = new ArrayList<>();
+//    @OneToMany(mappedBy = "user")
+//    private List<PostEntity> posts = new ArrayList<>();
     
     @Builder(toBuilder = true)
-    public UserEntity(Long id, String username, String password
+    public UserEntity(Long id, String tel, String password
             , String name, String email, String verificationToken, boolean enabled) {
         this.id = id;
-        this.username = username;
+//        this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
+        this.tel = tel;
         this.verificationToken = verificationToken; // 생성자에도 추가
         this.enabled = enabled; // 생성자에도 추가
     }
@@ -60,10 +63,11 @@ public class UserEntity {
     public User toUser() {
         User build = User.builder()
                 .id(id)
-                .username(username)
+//                .username(username)
                 .password(password)
                 .name(name)
                 .email(email)
+                .tel(tel)
                 .build();
         return build;
     }
@@ -71,9 +75,10 @@ public class UserEntity {
     public void update(Long id, String username, String password
             , String name, String email) {
         this.id = id;
-        this.username = username;
+//        this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
+        this.tel = tel;
     }
 }

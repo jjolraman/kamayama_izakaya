@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="boo"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="birth"/>
+			<item value="bir"/>
+			<item value="enable"/>
+			<item value="회원"/>
+			<item value="예"/>
+			<item value="name"/>
+			<item value="username"/>
+			<item value="email"/>
 			<item value="boo"/>
 			<item value="sendVerificationEmail"/>
 			<item value="sendVerificationEmail "/>
@@ -15,14 +23,6 @@
 			<item value="email-config"/>
 			<item value="ConstructorDeclaration"/>
 			<item value="emailtext"/>
-			<item value="email"/>
-			<item value="create"/>
-			<item value="emailText"/>
-			<item value="generateEmailText"/>
-			<item value="send"/>
-			<item value="action"/>
-			<item value="pass"/>
-			<item value="회원가입"/>
 		</list>
 		<list key="replacehistory">
 		</list>

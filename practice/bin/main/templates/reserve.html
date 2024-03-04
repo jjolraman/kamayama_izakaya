@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,32 +11,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    </head>
     
-
     <link rel="stylesheet" href="reserve.css">
-    <script>
-    $(document).ready(function(){
+    <script src="script.js"></script>
+	<script th:inline="javascript">
+    /*<![CDATA[*/
+    var reserves = [[${reserve}]]; // 서버로부터 받은 예약 데이터
+    console.log(reserves);
 
-        $('.datepicker').datepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true,
-            startDate: '0d'
+    // 페이지가 완전히 로드되었을 때 실행
+    document.addEventListener('DOMContentLoaded', function() {
+        // 예약 배열 순회
+        reserves.forEach(function(res) {
+            // 해당 시간에 해당하는 모든 요소를 찾아서 'disabled' 클래스 추가
+            document.querySelectorAll('.time-slot[data-time="' + res.time + '"]').forEach(function(el) {
+                el.classList.add('disabled');
+            });
         });
-        
-        $('.cell').click(function(){
-            $('.cell').removeClass('select');
-            $(this).addClass('select');
-        });
-        
-        });
+    });
+    /*]]>*/
+</script>
+
     
-    function submitForm() {
-    	
-    }
-    
-    </script>
 </head>
 <body>
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
     <div class="container-fluid px-0 px-sm-1 mx-auto mt-5">
     <div class="row justify-content-center mx-1">
         <div class="col-lg-10">
@@ -44,45 +46,84 @@
             <form id="reserve" action="reserve" autocomplete="off" method="post">
             <div class="container-fluid card-header bg-dark">
                 <div class="d-flex justify-content-center">
-                    <input name="date" type="text" id="dp1" class="datepicker" placeholder="날짜를 정해주세요." readonly><span class="fa fa-calendar"></span>
+                    <input name="date" type="text" id="dp1" class="datepicker" th:value="${date}" placeholder="날짜를 정해주세요." readonly><span class="fa fa-calendar"></span>
 
                     <select name="person" class="form-select ml-3">
-                        <option selected>인원수</option>
+                        <option selected>人員</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
+                    
+                    <select name="menu" class="form-select ml-3">
+                        <option selected>メニュー</option>
+                        <option value="set1">set1</option>
+                        <option value="set2">set2</option>
+                        <option value="set3">set3</option>
+                    </select>
                 </div>
             </div>
-           <div class="card-body p-4 p-sm-5 mt-3"><h3>오전</h3>
+           <div class="card-body p-4 p-sm-4 ml-4"><h3>午前</h3>
                     <div class="row text-center mx-0">
-                    <div class="col-md-2 col-4 my-3 px-0"><div id="myDiv" class="cell py-2">10:00AM</div></div>
-                    <input type="hidden" id="hiddenInput" name="time" value="10:00AM">
-                    <div class="col-md-2 col-4 my-3 px-0"><div id="myDiv" class="cell py-2">11:00AM</div></div>
-                    <div class="col-md-2 col-4 my-3 px-0"><div id="myDiv"class="cell py-2">12:00AM</div></div>
+                        <input type="hidden" name="time" id="selectedTime" value="">
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="10:00AM">10:00AM</div></div>
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="11:00AM">11:00AM</div></div>
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="12:00PM">12:00PM</div></div>
                     </div>
                 </div>
-                <div class="card-body p-4 p-sm-5 mt-0"><h3>오후</h3>
+           <div class="card-body p-4 p-sm-4 ml-4"><h3>午後</h3>
                     <div class="row text-center mx-0">
-                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">1:00PM</div></div>
-                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">2:00PM</div></div>
-                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2">3:00PM</div></div>
-                        <div class="col-md-5 col-4 my-3 px-0"><div class="cell py-2">4:00PM</div></div>
-                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">6:00PM</div></div>
-                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">7:00PM</div></div>
-                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">8:00PM</div></div>
-                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2">9:00PM</div></div>
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="1:00PM">1:00PM</div></div>
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="2:00PM">2:00PM</div></div>
+                        <div class="col-md-2 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="3:00PM">3:00PM</div></div>
+                        <div class="col-md-5 col-4 my-3 px-0"><div class="cell py-2 time-slot" data-time="4:00PM">4:00PM</div></div>
+                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2 time-slot" data-time="6:00PM">6:00PM</div></div>
+                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2 time-slot" data-time="7:00PM">7:00PM</div></div>
+                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2 time-slot" data-time="8:00PM">8:00PM</div></div>
+                        <div class="col-4 col-md-2 my-3 px-0"><div class="cell py-2 time-slot" data-time="9:00PM">9:00PM</div></div>
                     </div>
-                </div> 
+                </div>
+	         	<div id="loginModal" class="modal">
+				 <div class="modal-content">
+				   <span class="close">&times;</span>
+				   <h2>情報を入力してください。</h2>
+				     <div class="form-group">
+				       <label for="name">メール</label>
+				       <input type="text" id="name" name="email">
+				     </div>
+				     <button onclick="submitForms()">予約する</button>
+				 </div>
+				</div>            
             </form>
         </div>
         <div id="bt">
-            <button type="submit" form="reserve" onclick="submitForm()">예약하기</button>
+            <button th:if="${session.loginUser}" type="submit" form="reserve">予約する</button>
+            <button th:unless="${session.loginUser}" id="loginPrompt" onclick="showLoginModal()">予約する</button>
+            <button onclick="location.href='/'">帰る</button>
         </div>
         </div>
     </div>
     </div>
+    <!-- 비회원 정보입력 팝업창 -->
+<!--   <div id="loginModal" class="modal">
+		 <div class="modal-content">
+		   <span class="close">&times;</span>
+		   <h2>情報を入力してください。</h2>
+		   <form action="/join" method="post" id="loginForm">
+		     <div class="form-group">
+		       <label for="name">メール</label>
+		       <input type="text" id="name" name="email" required>
+		     </div>
+		     <div class="form-group">
+		       <label for="tel">電話番号</label>
+		       <input type="tel" id="tel" name="tel" required>
+		     </div>
+		     <button type="submit" onclick="submitForms()">予約する</button>
+		   </form>
+		 </div>
+	</div>
+	-->
 </body>
 </html>
