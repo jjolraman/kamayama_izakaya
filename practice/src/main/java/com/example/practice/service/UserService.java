@@ -27,11 +27,10 @@ public class UserService {
 	public void create(User user) {
 		
 	Member memberStatus = Member.Member; // 기본값을 MEMBER로 설정
-
-    if (user.getPassword() == null || user.getPassword().isEmpty()) {
-	        memberStatus = Member.NonMember; // password가 없으면 NONMEMBER로 설정
-    }
-
+	
+	if(user.getPassword() == null) {
+		memberStatus = Member.NonMember;
+	}
 		UserEntity userEntity = UserEntity.builder()
 				.id(user.getId())
 				.email(user.getEmail())

@@ -19,7 +19,7 @@
 		<th></th>
 	</tr>
 	<tr th:each="reserve: ${reserves}">
-		<td th:text="${reserve.user.name}"></td>
+		<td th:text="${reserve.email}"></td>
 		<td th:text="${reserve.person}"></td>
 		<td th:text="${reserve.date}"></td>
 		<td th:text="${reserve.time}"></td>

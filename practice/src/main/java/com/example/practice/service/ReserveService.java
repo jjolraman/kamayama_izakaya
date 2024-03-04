@@ -27,28 +27,29 @@ public class ReserveService {
 	/*예약하기*/
 	@Transactional
 	public void create(Reserve reserve) {
-		UserEntity userEntity = null; // 사용자 엔티티 초기화
-
-	    // reserve.getUser().getId() 호출 전에 reserve.getUser()가 null인지 확인합니다.
-	    if (reserve.getUser() != null) {
-	        Optional<UserEntity> byId = userRepository.findById(reserve.getUser().getId());
-	        if (byId.isPresent()) {
-	            userEntity = byId.get(); // 사용자 정보가 있으면 userEntity를 업데이트합니다.
-	        }
-	    }
+			UserEntity userEntity = null;
+			
+			if(reserve.getUser() != null) {
+				Optional<UserEntity> byId = userRepository.findById(reserve.getUser().getId());
+		        if (byId.isPresent()) {
+		        	userEntity = byId.get(); // 사용자 정보가 있으면 userEntity를 업데이트합니다.
+		        }
+			}    
 
 	    // ReserveEntity를 생성할 때, userEntity가 null일 수 있음을 고려합니다.
 	    ReserveEntity reserveEntity = ReserveEntity.builder()
 	            .id(reserve.getId())
-	            .user(userEntity) // userEntity가 null일 경우, 사용자 정보 없이 예약 생성
+	            .user(userEntity)
 	            .person(reserve.getPerson())
+	            .menu(reserve.getMenu())
 	            .date(reserve.getDate())
 	            .time(reserve.getTime())
-	            .member(userEntity != null ? userEntity.getMember() : Member.NonMember) // userEntity가 null이면 member도 null로 설정
+	            .member(userEntity != null ? Member.Member : Member.NonMember)
+	            .email(reserve.getEmail())
 	            .build();
 
-	    reserveRepository.save(reserveEntity);
-	}
+	    	reserveRepository.save(reserveEntity);
+		}
 	    
 /*		Optional<UserEntity> byId = userRepository.findById(reserve.getUser().getId());
 		

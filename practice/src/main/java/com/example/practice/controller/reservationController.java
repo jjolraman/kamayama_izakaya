@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.example.practice.entity.UserEntity;
 import com.example.practice.model.Member;
 import com.example.practice.model.Post;
 import com.example.practice.model.Reserve;
 import com.example.practice.model.User;
 import com.example.practice.service.ReserveService;
+import com.example.practice.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,8 +51,10 @@ public class reservationController {
 	/*예약하기*/
 	@PostMapping("reserve")
 	public String reserve(@SessionAttribute(name="loginUser", required = false) User loginUser,
-		@ModelAttribute Reserve reserve) {
-		reserve.setUser(loginUser);
+			@ModelAttribute Reserve reserve) {
+		if(loginUser != null) {
+			reserve.setUser(loginUser);
+		}
 		reserveService.create(reserve);
 		return "redirect:/";
 	}
@@ -62,6 +66,14 @@ public class reservationController {
 		List<Reserve> userReserves = reserveService.findReservesByUserId(loginUser.getId());
 		model.addAttribute("reserves", userReserves);
 		return "/reserved/list";
+	}
+	
+	/*비회원 예약조회*/
+	@GetMapping("reserved/nonList")
+	public String findReserve(Model model) {
+//		List<Reserve> userReserves = reserveService.
+//		model.addAttribute("reserves", userReserves);
+		return "/reserved/nonList";
 	}
 	
 	/*예약변경*/

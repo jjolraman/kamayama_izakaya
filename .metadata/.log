@@ -3335,3 +3335,177 @@ Binding(CTRL+SHIFT+C,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.textEditorScope,,,system)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-03-03 23:07:07.118
+!MESSAGE Failed to fetch type data for element witn key: Ljava/lang/String;
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 4 0 2024-03-03 23:07:07.119
+!MESSAGE Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+!STACK 0
+java.lang.Exception: Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+	at org.springframework.tooling.jdt.ls.commons.resources.ResourceUtils.getJavaProject(ResourceUtils.java:60)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.findElement(JavaData.java:79)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.typeData(JavaData.java:67)
+	at org.springframework.tooling.ls.eclipse.commons.STS4LanguageClientImpl.lambda$16(STS4LanguageClientImpl.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-03-03 23:07:07.132
+!MESSAGE Failed to fetch type data for element witn key: Ljava/util/Map;
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 4 0 2024-03-03 23:07:07.134
+!MESSAGE Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+!STACK 0
+java.lang.Exception: Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+	at org.springframework.tooling.jdt.ls.commons.resources.ResourceUtils.getJavaProject(ResourceUtils.java:60)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.findElement(JavaData.java:79)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.typeData(JavaData.java:67)
+	at org.springframework.tooling.ls.eclipse.commons.STS4LanguageClientImpl.lambda$16(STS4LanguageClientImpl.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-03-03 23:07:07.190
+!MESSAGE Failed to fetch type data for element witn key: Ljava/lang/String[];
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 4 0 2024-03-03 23:07:07.191
+!MESSAGE Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+!STACK 0
+java.lang.Exception: Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+	at org.springframework.tooling.jdt.ls.commons.resources.ResourceUtils.getJavaProject(ResourceUtils.java:60)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.findElement(JavaData.java:79)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.typeData(JavaData.java:67)
+	at org.springframework.tooling.ls.eclipse.commons.STS4LanguageClientImpl.lambda$16(STS4LanguageClientImpl.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-03-03 23:08:17.992
+!MESSAGE Classpath changed for project: practice
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-03-03 23:08:19.984
+!MESSAGE Failed to fetch type data for element witn key: Ljava/lang/String;
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 4 0 2024-03-03 23:08:19.985
+!MESSAGE Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+!STACK 0
+java.lang.Exception: Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+	at org.springframework.tooling.jdt.ls.commons.resources.ResourceUtils.getJavaProject(ResourceUtils.java:60)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.findElement(JavaData.java:79)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.typeData(JavaData.java:67)
+	at org.springframework.tooling.ls.eclipse.commons.STS4LanguageClientImpl.lambda$16(STS4LanguageClientImpl.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-03-03 23:08:19.988
+!MESSAGE Failed to fetch type data for element witn key: Ljava/util/Map;
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 4 0 2024-03-03 23:08:19.990
+!MESSAGE Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+!STACK 0
+java.lang.Exception: Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+	at org.springframework.tooling.jdt.ls.commons.resources.ResourceUtils.getJavaProject(ResourceUtils.java:60)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.findElement(JavaData.java:79)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.typeData(JavaData.java:67)
+	at org.springframework.tooling.ls.eclipse.commons.STS4LanguageClientImpl.lambda$16(STS4LanguageClientImpl.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-03-03 23:08:19.992
+!MESSAGE Failed to fetch type data for element witn key: Ljava/lang/String[];
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 4 0 2024-03-03 23:08:19.993
+!MESSAGE Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+!STACK 0
+java.lang.Exception: Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+	at org.springframework.tooling.jdt.ls.commons.resources.ResourceUtils.getJavaProject(ResourceUtils.java:60)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.findElement(JavaData.java:79)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.typeData(JavaData.java:67)
+	at org.springframework.tooling.ls.eclipse.commons.STS4LanguageClientImpl.lambda$16(STS4LanguageClientImpl.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-03-03 23:08:21.824
+!MESSAGE Failed to fetch type data for element witn key: Ljava/lang/String;
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 4 0 2024-03-03 23:08:21.825
+!MESSAGE Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+!STACK 0
+java.lang.Exception: Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+	at org.springframework.tooling.jdt.ls.commons.resources.ResourceUtils.getJavaProject(ResourceUtils.java:60)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.findElement(JavaData.java:79)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.typeData(JavaData.java:67)
+	at org.springframework.tooling.ls.eclipse.commons.STS4LanguageClientImpl.lambda$16(STS4LanguageClientImpl.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-03-03 23:08:21.828
+!MESSAGE Failed to fetch type data for element witn key: Ljava/util/Map;
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 4 0 2024-03-03 23:08:21.829
+!MESSAGE Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+!STACK 0
+java.lang.Exception: Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+	at org.springframework.tooling.jdt.ls.commons.resources.ResourceUtils.getJavaProject(ResourceUtils.java:60)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.findElement(JavaData.java:79)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.typeData(JavaData.java:67)
+	at org.springframework.tooling.ls.eclipse.commons.STS4LanguageClientImpl.lambda$16(STS4LanguageClientImpl.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-03-03 23:08:21.832
+!MESSAGE Failed to fetch type data for element witn key: Ljava/lang/String[];
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 4 0 2024-03-03 23:08:21.833
+!MESSAGE Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+!STACK 0
+java.lang.Exception: Resolve classpath: unable to resolve a Java project from : file:/C:/izakaya_reservation(%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)/practice
+	at org.springframework.tooling.jdt.ls.commons.resources.ResourceUtils.getJavaProject(ResourceUtils.java:60)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.findElement(JavaData.java:79)
+	at org.springframework.tooling.jdt.ls.commons.java.JavaData.typeData(JavaData.java:67)
+	at org.springframework.tooling.ls.eclipse.commons.STS4LanguageClientImpl.lambda$16(STS4LanguageClientImpl.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)

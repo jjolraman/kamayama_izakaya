@@ -15,10 +15,18 @@
         <!-- Page content-->
         <div class="container">
             <div class="text-center mt-5" >
-                <h1 th:if="${session.loginUser}" th:text="|${session.loginUser.username}님 환영합니다.|"></h1>
+                <h1 th:if="${session.loginUser}" th:text="|${session.loginUser.email}님 환영합니다.|"></h1>
 				<h1 th:unless="${session.loginUser}">ログインしてください。</h1>
             </div>
         </div>
         
+            <div id="emailModal" class="emodal" style="display:none;">
+			    <div class="emodal-content">
+			        <span class="close">&times;</span>
+			        <h2>이메일을 입력하세요.</h2>
+			        <input type="email" id="emailInput" placeholder="이메일">
+			        <button onclick="checkReservation()">조회하기</button>
+			    </div>
+			</div>
     </body>
 </html>

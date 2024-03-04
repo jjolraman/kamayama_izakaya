@@ -43,32 +43,53 @@ $(document).ready(function(){
     			
 		});
 		
-			// 비회원 팝업창 열기
+			// 비회원 예약시 팝업창 열기
 			function showLoginModal() {
 				document.getElementById('loginModal').style.display = 'block';
 			}
+			
+			// 비회원 예약시 이메일 입력하고 제출
+			function submitForms() {     	
+			    var emailInput = document.getElementById('name') // 새로운 input 요소 생성
+			
+			    var reserveForm = document.getElementById('reserve'); // reserve 폼 가져오기
+			    reserveForm.appendChild(emailInput); // 생성한 input 요소를 reserve 폼에 추가
+			    
+			    reserveForm.submit(); // reserve 폼 제출
+			}
+
 		
-		function submitForms() {
-			fetch('/join', {
-		    method: 'POST',
-		    body: new FormData(document.getElementById('loginForm'))
-		  })
-		  .then(response => {
-		    // 첫 번째 폼 제출 성공 후, 두 번째 폼 제출
-		    return fetch('/reserve', {
-		      method: 'POST',
-		      body: new FormData(document.getElementById('reserve'))
-		    });
-		  })
-		  .then(response => {
-		    // 두 번째 폼 제출 성공 처리
-		    console.log('두 폼 모두 성공적으로 제출됨');
-		  })
-		  .catch(error => {
-		    // 에러 처리
-		    console.error('폼 제출 중 에러 발생', error);
-		  });
+		/*	function submitForms() {
+				fetch('/join', {
+			    method: 'POST',
+			    body: new FormData(document.getElementById('loginForm'))
+			  })
+			  .then(response => {
+			    // 첫 번째 폼 제출 성공 후, 두 번째 폼 제출
+			    return fetch('/reserve', {
+			      method: 'POST',
+			      body: new FormData(document.getElementById('reserve'))
+			    });
+			  })
+			  .then(response => {
+			    // 두 번째 폼 제출 성공 처리
+			    console.log('두 폼 모두 성공적으로 제출됨');
+			  })
+			  .catch(error => {
+			    // 에러 처리
+			    console.error('폼 제출 중 에러 발생', error);
+			  });
+			}
+		*/
+		// 비회원 예약시 팝업창 열기
+			function showEmailModal() {
+				document.getElementById('emailModal').style.display = 'block';
+			}
+
+		
+		// 이메일로 예약 조회하는 함수 (실제 구현 필요)
+		function checkReservation() {
+		    var email = document.getElementById('emailInput').value;
+		    console.log(email); // 이메일 값 출력. 실제로는 예약 조회 로직 구현 필요.
+		    // 예약 조회 로직을 여기에 구현합니다. 예: AJAX 요청 등
 		}
-		
-
-

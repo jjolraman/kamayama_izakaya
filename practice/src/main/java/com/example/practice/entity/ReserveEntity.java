@@ -1,7 +1,6 @@
 package com.example.practice.entity;
 
 import com.example.practice.model.Member;
-import com.example.practice.model.Menu;
 import com.example.practice.model.Reserve;
 import com.example.practice.model.User;
 
@@ -35,8 +34,8 @@ public class ReserveEntity {
 	private UserEntity user;
 	@Column
 	private int person;
-//	@Column
-//	private Menu menu;
+	@Column
+	private String menu;
 	@Column(name="reserve_date")
 	private String date;
 	@Column
@@ -44,17 +43,21 @@ public class ReserveEntity {
 	@Column
 	@Enumerated(EnumType.STRING)
 	private Member member;
+	@Column
+	private String email;
 	
 	@Builder
-	public ReserveEntity(Long id, int person, UserEntity user,
-			String date, String time, Member member) {
+	public ReserveEntity(Long id, UserEntity user, int person,
+			String menu, String date, String time, Member member
+			, String email) {
 		this.id = id;
 		this.user = user;
 		this.person = person;
-//		this.menu = menu;
+		this.menu = menu;
 		this.date = date;
 		this.time = time;
 		this.member = member;
+		this.email = email;
 	}
 	
 	public Reserve toReserve() {
@@ -66,10 +69,11 @@ public class ReserveEntity {
 				.id(id)
 				.user(convertedUser)
 				.person(person)
-//				.menu(menu)
+				.menu(menu)
 				.date(date)
 				.time(time)
 				.member(member)
+				.email(email)
 				.build();
 		return build;
 	}

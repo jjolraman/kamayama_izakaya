@@ -16,16 +16,15 @@
 	</tr>
 	<tr th:each="user: ${userList}">
 		<td th:text="${user.id}"></td>
-		<td th:text="${user.username}"></td>
+		<td th:text="${user.email}"></td>
 		<td th:text="${user.password}"></td>
 		<td th:text="${user.name}"></td>
-		<td th:text="${user.email}"></td>
-		<td th:text="${user.birth}"></td>
+		<td th:text="${user.tel}"></td>
 		<td>
 			<a th:href="@{|list/${user.id}|}">조회</a>
 		</td>
 		<td>
-			<a th:href="@{|delete/${user.id}|}">삭제</a>
+			<a th:href="@{|/delete/${user.id}|}">삭제</a>
 		</td>
 	</tr>
 </table>
