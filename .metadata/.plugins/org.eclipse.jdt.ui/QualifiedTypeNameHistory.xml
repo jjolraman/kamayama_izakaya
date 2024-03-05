@@ -33,10 +33,13 @@
     <fullyQualifiedTypeName name="org.springframework.scheduling.annotation.Async"/>
     <fullyQualifiedTypeName name="jakarta.mail.MessagingException"/>
     <fullyQualifiedTypeName name="jakarta.mail.internet.MimeMessage"/>
-    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
     <fullyQualifiedTypeName name="com.izakaya.website.service.UserService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="lombok.Builder"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="com.izakaya.website.entity.PostEntity"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.izakaya.website.entity.UserEntity"/>
 </qualifiedTypeNameHistroy>

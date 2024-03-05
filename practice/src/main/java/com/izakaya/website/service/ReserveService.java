@@ -4,99 +4,104 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.izakaya.website.entity.PostEntity;
 import com.izakaya.website.entity.ReserveEntity;
 import com.izakaya.website.entity.UserEntity;
-import com.izakaya.website.model.Member;
-import com.izakaya.website.model.Post;
 import com.izakaya.website.model.Reserve;
 import com.izakaya.website.repository.ReserveRepository;
 import com.izakaya.website.repository.UserRepository;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+import com.izakaya.website.model.Member; // Member 열거형 import 추가
+
 @Service
+@RequiredArgsConstructor
 public class ReserveService {
-	private final ReserveRepository reserveRepository;
-	private final UserRepository userRepository;
-	
-	/*예약하기*/
-	@Transactional
-	public void create(Reserve reserve) {
-			UserEntity userEntity = null;
-			
-			if(reserve.getUser() != null) {
-				Optional<UserEntity> byId = userRepository.findById(reserve.getUser().getId());
-		        if (byId.isPresent()) {
-		        	userEntity = byId.get(); // 사용자 정보가 있으면 userEntity를 업데이트합니다.
-		        }
-			}    
+    private final ReserveRepository reserveRepository;
+    private final UserRepository userRepository;
+    private final JavaMailSender javaMailSender;
 
-	    // ReserveEntity를 생성할 때, userEntity가 null일 수 있음을 고려합니다.
-	    ReserveEntity reserveEntity = ReserveEntity.builder()
-	            .id(reserve.getId())
-	            .user(userEntity)
-	            .person(reserve.getPerson())
-	            .menu(reserve.getMenu())
-	            .date(reserve.getDate())
-	            .time(reserve.getTime())
-	            .member(userEntity != null ? Member.Member : Member.NonMember)
-	            .email(reserve.getEmail())
-	            .build();
+    @Transactional
+    public void create(Reserve reserve) {
+        UserEntity userEntity = null;
+        if (reserve.getUser() != null) {
+            Optional<UserEntity> byId = userRepository.findById(reserve.getUser().getId());
+            if (byId.isPresent()) {
+                userEntity = byId.get(); 
+            }
+        }    
 
-	    	reserveRepository.save(reserveEntity);
-		}
-	    
-/*		Optional<UserEntity> byId = userRepository.findById(reserve.getUser().getId());
-		
-		if(byId.isPresent()) {
-			UserEntity userEntity = byId.get();
-			
-			ReserveEntity reserveEntity = ReserveEntity.builder()
-					.id(reserve.getId())
-					.user(userEntity)
-					.person(reserve.getPerson())
-					.date(reserve.getDate())
-					.time(reserve.getTime())
-					.member(userEntity.getMember())
-					.build();				
-			
-			reserveRepository.save(reserveEntity);
-		}*/
+        ReserveEntity reserveEntity = ReserveEntity.builder()
+            .id(reserve.getId())
+            .user(userEntity)
+            .person(reserve.getPerson())
+            .menu(reserve.getMenu())
+            .date(reserve.getDate())
+            .time(reserve.getTime())
+//            .member(userEntity != null ? Member.MEMBER : Member.NON_MEMBER) // 수정: 열거형 상수 수정
+            .email(reserve.getEmail())
+            .build();
 
-	
-	/*날짜에 해당하는 모든예약조회*/
-	public List<Reserve> findAllReserve(String date) { 
-		List<ReserveEntity> byDate = reserveRepository.findByDate(date);
-		List<Reserve> reserveList = new ArrayList<>();
-		for(ReserveEntity reserveEntity : byDate) {
-			reserveList.add(reserveEntity.toReserve());
-		}
-		return reserveList;
-	}
+        reserveRepository.save(reserveEntity);
 
-	/*회원의 모든예약조회*/
-	public List<Reserve> findReservesByUserId(Long userId) {
-	    List<ReserveEntity> reserveEntities = reserveRepository.findByUserId(userId);
-	    List<Reserve> reserves = new ArrayList<>();
-	    for (ReserveEntity reserveEntity : reserveEntities) {
-	        reserves.add(reserveEntity.toReserve());
-	    }
-	    return reserves;
-	}
-	
-	/*회원의 예약취소(삭제)*/
-	@Transactional
-	public void deleteReserve(Long reserveId) {
-		Optional<ReserveEntity> reserveById = reserveRepository.findById(reserveId);
-		
-		if(reserveById.isPresent()) {
-			ReserveEntity reserveEntity = reserveById.get();
-			reserveRepository.delete(reserveEntity);
-		}
-	}
+        // 예약 정보가 생성되면 이메일을 발송합니다.
+        if (userEntity != null) {
+            sendReservationConfirmationEmail(userEntity.getEmail(), reserve);
+        }
+    }
+
+
+    
+    private void sendReservationConfirmationEmail(String userEmail, Reserve reserve) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(userEmail);
+        message.setSubject("Reservation Confirmation");
+        // 예약 정보를 메일 본문에 추가합니다.
+        String mailContent = "Your reservation details: \n"
+                           + "Date: " + reserve.getDate() + "\n"
+                           + "Time: " + reserve.getTime() + "\n"
+                           + "Person: " + reserve.getPerson() + "\n"
+                           + "Menu: " + reserve.getMenu();
+        message.setText(mailContent);
+        javaMailSender.send(message);
+    }
+
+
+    
+    
+    
+    
+
+    public List<Reserve> findAllReserve(String date) { 
+        List<ReserveEntity> byDate = reserveRepository.findByDate(date);
+        List<Reserve> reserveList = new ArrayList<>();
+        for(ReserveEntity reserveEntity : byDate) {
+            reserveList.add(reserveEntity.toReserve());
+        }
+        return reserveList;
+    }
+
+    public List<Reserve> findReservesByUserId(Long userId) {
+        List<ReserveEntity> reserveEntities = reserveRepository.findByUserId(userId);
+        List<Reserve> reserves = new ArrayList<>();
+        for (ReserveEntity reserveEntity : reserveEntities) {
+            reserves.add(reserveEntity.toReserve());
+        }
+        return reserves;
+    }
+
+    @Transactional
+    public void deleteReserve(Long reserveId) {
+        Optional<ReserveEntity> reserveById = reserveRepository.findById(reserveId);
+        
+        if(reserveById.isPresent()) {
+            ReserveEntity reserveEntity = reserveById.get();
+            reserveRepository.delete(reserveEntity);
+        }
+    }
 }

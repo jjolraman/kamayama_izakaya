@@ -1,6 +1,5 @@
 package com.izakaya.website.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -8,15 +7,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
 
-    @Autowired
-    private JavaMailSender javaMailSender;
+    private final JavaMailSender emailSender;
 
-    public void sendVerificationEmail(String to, String verificationLink) {
+    public EmailService(JavaMailSender emailSender) {
+        this.emailSender = emailSender;
+    }
+
+    public void sendReservationConfirmationEmail(String email) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject("Verify your email address");
-        message.setText("Please click on the link below to verify your email address:\n" + verificationLink);
-
-        javaMailSender.send(message);
+        message.setTo(email);
+        message.setSubject("예약 확인 메일");
+        message.setText("예약이 성공적으로 완료되었습니다. 감사합니다!");
+        emailSender.send(message);
     }
 }
