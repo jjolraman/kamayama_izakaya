@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="ここにサイト説明を入れます">
 <meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
-<link rel="stylesheet" href="css/style.css">
-<script src="js/openclose.js"></script>
-<script src="js/fixmenu_pagetop.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/openclose.js"></script>
+<script src="/js/fixmenu_pagetop.js"></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -36,7 +36,6 @@
     color: #fff;
     background-color: #ff5733;
     padding: 10px 20px;
-    border-radius: 5px;
     text-decoration: none;
 }
 .popup-btn:hover {
@@ -48,22 +47,25 @@
 <body>
 
 <header>
-<h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="居酒屋"></a></h1>
+<h1 id="logo"><a href="/"><img src="/images/logo.png" alt="居酒屋"></a></h1>
 <!--PC用（901px以上端末）メニュー-->
 <nav id="menubar">
 <ul>
-<li><a href="index.html">ホーム</a></li>
-<li><a href="about.html">お店情報</a></li>
-<li><a href="menu.html">メニュー</a></li>
-<li><a href="reserve">ご予約</a></li>
-<li class="current"><a href="contact.html">お問合せ</a></li>
-<li><a href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
+<li><a href="/">ホーム</a></li>
+<li><a href="/about">お店情報</a></li>
+<li><a href="/menu">メニュー</a></li>
+<li><a href="/reserve">ご予約</a></li>
+<li class="current"><a th:if="${session.loginUser}" href="/contact">お問合せ</a></li>
+<li><a th:if="${session.loginUser}" href="/reserved/list">予約確認</a></li>
+<li><a th:unless="${session.loginUser}" href="/reserved/nonList">予約確認</a></li>
+<li><a th:if="${session.loginUser}" href="/logout" class="popup-btn">ログアウト</a></li>
+<li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
 </ul>
 </nav>
 <ul class="icon">
-<li><a href="#"><img src="images/icon_facebook.png" alt="Facebook"></a></li>
-<li><a href="#"><img src="images/icon_twitter.png" alt="Twitter"></a></li>
-<li><a href="#"><img src="images/icon_instagram.png" alt="Instagram"></a></li>
+<li><a href="#"><img src="/images/icon_facebook.png" alt="Facebook"></a></li>
+<li><a href="#"><img src="/images/icon_twitter.png" alt="Twitter"></a></li>
+<li><a href="#"><img src="/images/icon_instagram.png" alt="Instagram"></a></li>
 </ul>
 </header>
 
@@ -71,24 +73,26 @@
 <div id="menubar-s">
 <nav>
 <ul>
-    <li><a href="index.html">ホーム</a></li>
-    <li><a href="about.html">お店情報</a></li>
-    <li><a href="menu.html">メニュー</a></li>
-    <li><a href="reserve">ご予約</a></li>
-    <li><a href="contact.html">お問合せ</a></li>
-    <li><a href="javascript:void(0)" onclick="openPopup('login')"
-        class="popup-btn">ログイン</a></li>
+    <li><a href="/">ホーム</a></li>
+    <li><a href="/about.html">お店情報</a></li>
+    <li><a href="/menu.html">メニュー</a></li>
+    <li><a href="/reserve">ご予約</a></li>
+	<li class="current"><a th:if="${session.loginUser}" href="/contact">お問合せ</a></li>
+	<li><a th:if="${session.loginUser}" href="/reserved/list">予約確認</a></li>
+	<li><a th:unless="${session.loginUser}" href="/reserved/nonList">予約確認</a></li>
+	<li><a th:if="${session.loginUser}" href="/logout" class="popup-btn">ログアウト</a></li>
+	<li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
 </ul>
 </nav>
 <ul class="icon">
-<li><a href="#"><img src="images/icon_facebook.png" alt="Facebook"></a></li>
-<li><a href="#"><img src="images/icon_twitter.png" alt="Twitter"></a></li>
-<li><a href="#"><img src="images/icon_instagram.png" alt="Instagram"></a></li>
+<li><a href="#"><img src="/images/icon_facebook.png" alt="Facebook"></a></li>
+<li><a href="#"><img src="/images/icon_twitter.png" alt="Twitter"></a></li>
+<li><a href="#"><img src="/images/icon_instagram.png" alt="Instagram"></a></li>
 </ul>
 </div>
 
 <div id="question">
-    <div class="container my-5">
+    <div class="vcontainer">
         <h2>掲示文 修正</h2>
     
         <!-- 게시글 수정 폼 -->
@@ -96,7 +100,7 @@
             <form th:action="@{/post/update/{id}(id=${post.id})}" method="post" th:object="${post}">
                     <!-- 게시글 상세 내용 -->
         <div class="card">
-            <div class="card-header">
+            <div class="ucard-header">
                 <!-- 게시글 제목 -->
                 <label for="title" class="form-label">タイトル</label>
                 <input type="text" class="form-control" th:field="*{title}" value="*{title}" required>
@@ -105,16 +109,15 @@
             <div class="card-body">
                 <!-- 게시글 내용 -->
                 <label for="content" class="form-label">内容</label>
-                <textarea class="form-control" th:field="*{content}" rows="5" required>[(*{content})]</textarea>
+                <textarea class="form-control" th:field="*{content}" rows="6" required>[(*{content})]</textarea>
             </div>
             <div class="alert alert-danger" th:errors="*{content}"></div>
         </div>
-            <button type="submit" class="btn btn-danger mt-3" th:onclick="|Editconfirm(${post.id})|">修整する</button>
+            <button type="submit" class="usbtn" th:onclick="|Editconfirm(${post.id})|">修整する</button>
+                <!-- 뒤로 가기 버튼 -->
+            <a href="/post/list" class="ubtn"> 帰る	</a>
             </form>
         </div>
-    
-        <!-- 뒤로 가기 버튼 -->
-        <a href="/post/list" class="btn btn-secondary mt-3"> 帰る	</a>
     </div>
 </div>
 <!--/#contents-->

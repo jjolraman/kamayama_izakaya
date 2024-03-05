@@ -76,7 +76,7 @@ header {
 }
 /*ヘッダーにマウスオンした場合*/
 header:hover {
-	overflow: auto;
+	overflow: hidden;
 }
 /*ロゴ画像*/
 header h1 {
@@ -123,7 +123,7 @@ ul.icon img {
 /*mainブロック*/
 #main {
 	width: 75%;			/*ブロックの幅*/
-	padding: 100px 0;	/*上下、左右へのブロック内の余白*/
+	padding: 30px 0;	/*上下、左右へのブロック内の余白*/
 	overflow: auto;overflow-x: hidden;
 	position: absolute;
 	left: 20%;
@@ -146,6 +146,7 @@ ul.icon img {
 	padding: 0 20px;		/*上下、左右への余白*/
 	font-size: 30px;		/*文字サイズ*/
 	border-bottom: 1px solid #fff;	/*下線の幅、線種、色*/
+	text-align: center;
 }
 /*メインコンテンツのh3タグ設定*/
 #main h3 {
@@ -211,7 +212,7 @@ ul.icon img {
 ---------------------------------------------------------------------------*/
 /*ボックス１個あたりの設定*/
 .box1 {
-	margin: 0 2% 20px;		/*上、左右、下へのボックスの外に空けるスペース*/
+	margin: 50px 2% 50px;		/*上、左右、下へのボックスの外に空けるスペース*/
 	padding: 3%;			/*ボックス内の余白*/
 }
 /*box1内のfigure(画像)タグ*/
@@ -709,20 +710,20 @@ dl.menu dd {
 	width: 80%;
 	height: 90%;
 	margin: 0 auto;
-	margin-top: 3%;
+	margin-top: 2%;
 	margin-left: 17.5%;
 	background-color: rgba(255, 255, 255, 0.5);
 	border: 1px solid #000;
 }
 
 .q_container{
-	margin-top: 3%;
+	margin-top: 2%;
 }
 
 .form-label{
 	font-size: 1.4rem;
 	margin-left: 6%;
-	color: #fff;
+	color: #fff;;
 }
 
 .form-control{
@@ -748,8 +749,7 @@ dl.menu dd {
 	display: inline-block;
 	width: 8%;
 	height: 40px;
-	margin-top: 2%;
-	margin-left: 5.5%;
+	margin-top: 3%;
 	border-radius: 5px;
 	font-size: 1.1rem;
 	border: none;
@@ -768,7 +768,7 @@ dl.menu dd {
 	width: 80%;
 	height: 100%;
 	margin: 0 auto;
-	margin-top: 3%;
+	margin-top: 2%;
 	margin-left: 17.5%;
 	background-color: rgba(255, 255, 255, 0.5);
 	border: 1px solid #000;
@@ -776,7 +776,6 @@ dl.menu dd {
 
 .lcontainer{
 	margin-top: 1rem;
-	height: 100%;
 }
 
 .table{
@@ -817,14 +816,172 @@ thead.table-light{
 
 th{
 	padding-bottom: 0.7rem;
-}
-
-tr{
-	text-align: center;
+	padding-left: 0.5rem;
 }
 
 td{
-	color: #000;
-	padding: 1%;
+	text-align:center;
+	padding: 0.7rem 0;
 }
 
+.title{
+	color: #245af9;
+}
+
+/* Q&A 게시판 글상세조회
+---------------------------------------------------------------------------*/
+.vcontainer{
+	width: 90%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.vcontainer > h2 {
+	font-size: 2rem;
+	padding-top: 1.5rem;
+}
+
+.card-header > h3{
+	padding: 0.8rem;
+	border-bottom: 1px solid;
+}
+
+.card-body > p{
+	padding: 0.8rem;
+	border-bottom: 1px solid;
+}
+
+.card{
+	position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 0.25rem;
+}
+
+.vbtn{
+	color: #fff;
+    background-color: #ffffff;
+    border-color: #6c757d;
+	display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+}
+
+.vbtn:hover{
+	background-color: #d6d6d6;
+	color: #fff;
+	transition: all 0.3s;
+}
+
+.vsbtn{
+	color: #fff;
+    background-color: #ea2b3e;
+    border-color: #dc3545;
+	display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+	margin: 1rem 1%;
+}
+
+.vsbtn:hover{
+	background-color: #c72434;
+	transition: all 0.3s;
+}
+
+.card-footer{
+	padding: 0.8rem;
+}
+
+/* Q&A 게시판 글수정
+---------------------------------------------------------------------------*/
+.ucard-header{
+	margin-top: 2%;
+}
+
+.form-control{
+	margin-bottom: 5%;
+}
+
+.usbtn{
+	color: #fff;
+    background-color: #ea2b3e;
+    border-color: #dc3545;
+	display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+	margin-top: 1rem;
+}
+
+.usbtn:hover{
+	background-color: #c72434;
+	transition: all 0.3s;
+}
+
+.ubtn{
+	color: #fff;
+    background-color: #ffffff;
+    border-color: #6c757d;
+	display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+	margin-top: 1rem;
+	margin-left: 1%;
+}
+
+.ubtn:hover{
+	background-color: #d6d6d6;
+	color: #fff;
+	transition: all 0.3s;
+}

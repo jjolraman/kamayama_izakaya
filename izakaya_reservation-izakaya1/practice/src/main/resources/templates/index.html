@@ -54,9 +54,11 @@
 <li><a href="about">お店情報</a></li>
 <li><a href="menu">メニュー</a></li>
 <li><a href="reserve">ご予約</a></li>
-<li><a href="contact">お問合せ</a></li>
-<li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
+<li><a th:if="${session.loginUser}" href="contact">お問合せ</a></li>
+<li><a th:if="${session.loginUser}" href="reserved/list">予約確認</a></li>
+<li><a th:unless="${session.loginUser}" href="reserved/findEmail">予約確認</a></li>
 <li><a th:if="${session.loginUser}" href="logout" class="popup-btn">ログアウト</a></li>
+<li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
 </ul>
 </nav>
 <ul class="icon">
@@ -74,9 +76,10 @@
 <li><a href="about">お店情報</a></li>
 <li><a href="menu">メニュー</a></li>
 <li><a href="reserve">ご予約</a></li>
-<li><a href="contact">お問合せ</a></li>
-<li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
+<li><a th:if="${session.loginUser}" href="/reserved/list">予約確認</a></li>
+<li><a th:unless="${session.loginUser}" href="reserved/findEmail">予約確認</a></li>
 <li><a th:if="${session.loginUser}" href="logout" class="popup-btn">ログアウト</a></li>
+<li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
 </ul>
 </nav>
 <ul class="icon">
@@ -122,11 +125,6 @@
 
 </div>
 <!--/#contents-->
-
-<footer>
-<small>Copyright&copy; <a href="index.html">居酒屋</a> All Rights Reserved.</small>
-<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
-</footer>
 
 <!--背景スライドショー-->
 <aside id="mainimg">

@@ -48,9 +48,11 @@
 <li class="current"><a href="about">お店情報</a></li>
 <li><a href="menu">メニュー</a></li>
 <li><a href="reserve">ご予約</a></li>
-<li><a href="contact">お問合せ</a></li>
+<li><a th:if="${session.loginUser}" href="contact">お問合せ</a></li>
+<li><a th:if="${session.loginUser}" href="reserved/list">予約確認</a></li>
+<li><a th:unless="${session.loginUser}" href="reserved/findEmail">予約確認</a></li>
+<li><a th:if="${session.loginUser}" href="logout" class="popup-btn">ログアウト</a></li>
 <li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
-<li><a th:if="${session.loginUser}" href="logout" class="popup-btn">ログアウト</a></li></li>
 </ul>
 </nav>
 <ul class="icon">
@@ -64,13 +66,14 @@
 <div id="menubar-s">
 <nav>
 <ul>
-<li class="current"><a href="/">ホーム</a></li>
+<li><a href="/">ホーム</a></li>
 <li><a href="about">お店情報</a></li>
 <li><a href="menu">メニュー</a></li>
 <li><a href="reserve">ご予約</a></li>
-<li><a href="contact">お問合せ</a></li>
-<li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
-<li><a th:if="${session.loginUser}" href="logout" class="popup-btn">ログアウト</a></li>
+<li><a th:if="${session.loginUser}" href="/reserved/list">予約確認</a></li>
+		<li><a th:unless="${session.loginUser}" href="reserved/findEmail">予約確認</a></li>
+		<li><a th:if="${session.loginUser}" href="logout" class="popup-btn">ログアウト</a></li>
+		<li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
 </ul>
 </nav>
 <ul class="icon">
@@ -89,7 +92,6 @@
 <h2>お店情報</h2>
 
 <table class="ta1">
-<caption>アクセス</caption>
 <tr>
 <th>所在地</th>
 <td>東京都XX区XXXX</td>
@@ -98,21 +100,6 @@
 <th>地図</th>
 <td><a href="http://template-party.com/file/pickup_googlemap.html">Google Mapを使いたい人はこちらの解説をご覧下さい。</a><br>
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1453.9698457573586!2d129.03682769307724!3d35.10541608583731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568e9705d61f0f1%3A0x1e8257787e29fe04!2sBusan%20Trade%20Center%20Building!5e0!3m2!1sja!2skr!4v1709052323811!5m2!1sja!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></td>
-</tr>
-<tr>
-<th colspan="2" class="tamidashi">table途中に入れる見出し</th>
-</tr>
-<tr>
-<th>見出し</th>
-<td>ここに説明を入れます。</td>
-</tr>
-<tr>
-<th>見出し</th>
-<td>ここに説明を入れます。</td>
-</tr>
-<tr>
-<th>見出し</th>
-<td>ここに説明を入れます。</td>
 </tr>
 </table>
 
@@ -123,11 +110,6 @@
 
 </div>
 <!--/#contents-->
-
-<footer>
-<small>Copyright&copy; <a href="index.html">居酒屋</a> All Rights Reserved.</small>
-<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
-</footer>
 
 <!--배경 이미지2-->
 <aside id="mainimg">

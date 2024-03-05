@@ -12,4 +12,5 @@ import java.time.LocalDate;
 public interface ReserveRepository extends JpaRepository<ReserveEntity, Long>{
 	List<ReserveEntity> findByDate(String date);
 	List<ReserveEntity> findByUserId(Long userId);
+	List<ReserveEntity> findByEmail(String email);
 }

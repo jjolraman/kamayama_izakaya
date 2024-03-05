@@ -85,7 +85,7 @@
 </div>
 
 <div id="question">
-    <div class="container my-5">
+    <div class="vcontainer">
         <h2>掲示文</h2>
     
         <!-- 게시글 상세 내용 -->
@@ -101,17 +101,17 @@
             <div class="card-footer text-muted">
                 <!-- 게시글 작성자, 조회수, 등록일 -->
                 <span th:text="|作成者: *{user.email}|"></span>&emsp;&emsp;&emsp;
-                  <span>掲示日: [[${#temporals.format(post.createTime, 'yyyy-MM-dd')}]]</span>
+                <span>掲示日: [[${#temporals.format(post.createTime, 'yyyy-MM-dd')}]]</span>
             </div>
         </div>
     
         <!-- 게시글 삭제 폼 -->
         <th:block th:if="${session.loginUser != null and session.loginUser.id == post.user.id}">
-            <a th:href="@{/post/update/{id}(id=${post.id})}" class="btn btn-secondary mt-3">修正する</a>
+            <a th:href="@{/post/update/{id}(id=${post.id})}" class="vbtn">修正する</a>
             
-            <button type="button" class="btn btn-danger mt-3" th:onclick="|confirmRemove(${post.id})|">削除する</button>
+            <button type="button" class="vsbtn" th:onclick="|confirmRemove(${post.id})|">削除する</button>
             <!-- 뒤로 가기 버튼 -->
-        <a href="list" class="btn btn-secondary mt-3">帰る</a>
+        <a href="list" class="vbtn">帰る</a>
         </th:block>
     </div>
 </div>

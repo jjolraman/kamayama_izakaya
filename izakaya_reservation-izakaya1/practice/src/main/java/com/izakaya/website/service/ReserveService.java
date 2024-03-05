@@ -89,6 +89,16 @@ public class ReserveService {
 	    return reserves;
 	}
 	
+	/*비회원의 예약조회*/
+	public List<Reserve> findReservesByEmail(String email) {
+	    List<ReserveEntity> reserveEntities = reserveRepository.findByEmail(email);
+	    List<Reserve> reserves = new ArrayList<>();
+	    for (ReserveEntity reserveEntity : reserveEntities) {
+	        reserves.add(reserveEntity.toReserve());
+	    }
+	    return reserves;
+	}
+	
 	/*회원의 예약취소(삭제)*/
 	@Transactional
 	public void deleteReserve(Long reserveId) {
@@ -98,5 +108,12 @@ public class ReserveService {
 			ReserveEntity reserveEntity = reserveById.get();
 			reserveRepository.delete(reserveEntity);
 		}
+	}
+	
+	/*비회원의 예약취소(삭제)*/
+	@Transactional
+	public void deleteReserves(String email) {
+		List<ReserveEntity> byEmail = reserveRepository.findByEmail(email);
+		reserveRepository.deleteAll(byEmail);
 	}
 }

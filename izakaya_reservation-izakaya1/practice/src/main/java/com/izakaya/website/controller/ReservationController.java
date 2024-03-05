@@ -13,13 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.izakaya.website.entity.UserEntity;
-import com.izakaya.website.model.Member;
-import com.izakaya.website.model.Post;
 import com.izakaya.website.model.Reserve;
 import com.izakaya.website.model.User;
 import com.izakaya.website.service.ReserveService;
-import com.izakaya.website.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -68,11 +64,17 @@ public class ReservationController {
 		return "/reserved/list";
 	}
 	
+	/*비회원 예약조회 이동*/
+	@GetMapping("reserved/findEmail")
+	public String findByEmail() {
+		return "/reserved/findEmail";
+	}
+	
 	/*비회원 예약조회*/
 	@GetMapping("reserved/nonList")
-	public String findReserve(Model model) {
-//		List<Reserve> userReserves = reserveService.
-//		model.addAttribute("reserves", userReserves);
+	public String findReserve(@RequestParam(name="email", required = false) String email ,Model model) {
+		List<Reserve> byEmail = reserveService.findReservesByEmail(email);
+		model.addAttribute("reserves", byEmail);
 		return "/reserved/nonList";
 	}
 	
@@ -88,6 +90,13 @@ public class ReservationController {
 	public String deleteReserve(@PathVariable(name="reserveId") Long reserveId) {
 		reserveService.deleteReserve(reserveId);
 		return "redirect:/reserved/list";
+	}
+	
+	/*비회원 예약취소*/
+	@GetMapping("reserved/remove/{email}")
+	public String removeReserve(@PathVariable(name="email") String email) {
+		reserveService.deleteReserves(email);
+		return "redirect:/";
 	}
 
 }
