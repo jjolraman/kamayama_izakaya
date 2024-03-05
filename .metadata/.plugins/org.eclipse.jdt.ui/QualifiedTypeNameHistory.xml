@@ -30,7 +30,6 @@
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.scheduling.annotation.Async"/>
     <fullyQualifiedTypeName name="com.izakaya.website.service.UserService"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="com.izakaya.website.entity.PostEntity"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
@@ -52,4 +51,5 @@
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="jakarta.mail.internet.MimeMessage"/>
     <fullyQualifiedTypeName name="jakarta.mail.MessagingException"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
 </qualifiedTypeNameHistroy>

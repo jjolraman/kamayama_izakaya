@@ -2,25 +2,28 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>ログイン</title>
+    <title>로그인</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
+            font-family: Arial, sans-serif; 
+            background-color: #f8f8f8; /* 흰색 배경 */
             margin: 0;
-            padding: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
         .container {
-            background-color: #fff;
+            background-color: #f8f8f8; /* 흰색 배경 */
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            color: #333;
+            text-align: center; 
+            color: #333; 
+            width: 80%; 
+            max-width: 400px; 
+            margin: 0 auto; 
         }
         h2 {
             margin-bottom: 20px;
@@ -35,18 +38,19 @@
             padding: 10px;
             margin-top: 10px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
+            border: 1px solid #ffa500; /* 주황색 테두리 */
+            border-radius: 5px; /* 둥근 테두리 */
+            font-size: 16px;
             box-sizing: border-box;
         }
         button {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #ff5733; /* 주황색 배경색 */
+            color: #ffffff; /* 흰색 글자색 */
             border: none;
             cursor: pointer;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #e24424; /* 호버 상태에서의 배경색 변경 */
         }
         .warning {
             color: red;
@@ -64,7 +68,7 @@
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
             if (email === "" || password === "") {
-                document.getElementById("warning").innerText = "ログインIDとパスワードは必須項目です。";
+                document.getElementById("warning").innerText = "로그인ID와 패스워드는 필수 항목입니다.";
                 return false;
             }
             return true;
@@ -73,18 +77,15 @@
 </head>
 <body>
     <div class="container">
-        <h2>ログイン</h2>
+        <h2>로그인</h2>
         <form action="login" method="post" onsubmit="return login()">
-            <input type="text" id="email" name="email" placeholder="メールアドレス">
-            <input type="password" id="password" name="password" placeholder="パスワード">
-            <button type="submit">ログイン</button>
+            <input type="text" id="email" name="email" placeholder="메일주소">
+            <input type="password" id="password" name="password" placeholder="패스워드">
+            <button type="submit">로그인</button>
             <div id="warning" class="warning"></div>
-            <!-- 로그인 실패 시 오류 메시지 표시 -->
-            <c:if test="${not empty error}">
-                <div class="warning">${error}</div>
-            </c:if>
+           
         </form>
-        <a href="join" class="signup-link">会員登録</a>
+        <a href="join" class="signup-link">회원가입</a>
     </div>
 </body>
 </html>

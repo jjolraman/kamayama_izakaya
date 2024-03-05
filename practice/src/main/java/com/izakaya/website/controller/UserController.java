@@ -56,8 +56,8 @@ public class UserController {
     public String join(@ModelAttribute User user) {
         userService.create(user);
         log.info("user: {}", user);
-        return "redirect:/login";
-    }
+        return "redirect:/CheckEmail"; // 회원가입 성공 시 CheckEmail.html 페이지로 이동
+    }   
 
     @GetMapping("login")
     public String loginForm(Model model) {
@@ -65,18 +65,19 @@ public class UserController {
         return "user/login";
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public String login(@ModelAttribute User user, HttpSession session, RedirectAttributes redirectAttributes) {
         User loginResult = userService.login(user);
         if (loginResult != null) {
             session.setAttribute("loginUser", loginResult);
             log.info("loginUser: {}", loginResult);
-            return "redirect:/";
+            return "redirect:/closePopup"; // 로그인 성공 시 팝업 창을 닫는 페이지로 이동
         } else {
             redirectAttributes.addFlashAttribute("error", "이메일 또는 비밀번호가 올바르지 않습니다.");
             return "redirect:/login";
         }
     }
+
 
     @GetMapping("logout")
     public String logout(HttpSession session) {
@@ -94,7 +95,7 @@ public class UserController {
     @GetMapping("verify")
     public String verifyEmail(@RequestParam("token") String token, RedirectAttributes redirectAttributes) {
         if (userService.verifyEmail(token, redirectAttributes)) {
-            return "redirect:/login"; // 로그인 페이지로 리다이렉트
+            return "redirect:/closePopupJoin"; // 로그인 페이지로 리다이렉트
         } else {
             return "user/verification_fail"; // 이메일 인증 실패 페이지로 리다이렉트
         }
