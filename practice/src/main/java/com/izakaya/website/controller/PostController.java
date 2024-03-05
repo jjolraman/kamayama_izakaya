@@ -35,13 +35,16 @@ public class PostController {
 	
 	@PostMapping("create")
 	public String postCreate(@ModelAttribute Post post,
-							 @SessionAttribute(name="loginUser") User user) {
+							 @SessionAttribute(name="loginUser", required = false) User user) {
+		if(user == null) {
+			return "redirect:/";
+		}
 		post.setUser(user);
 		postService.create(post);
 		return "redirect:/post/list";
 	}
 	
-	@GetMapping("list")
+	@GetMapping("/list")
 	public String findAll(Model model) {
 		List<Post> postList = postService.findAll();
 		model.addAttribute("posts", postList);
@@ -81,4 +84,5 @@ public class PostController {
 		postService.removePost(postId, loginUser);
 		return "redirect:/post/list";
 	}
+	
 }

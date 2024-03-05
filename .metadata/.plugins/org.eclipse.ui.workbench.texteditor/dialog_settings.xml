@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="showLoginModal"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="showLoginModal"/>
+			<item value="loginPrompt"/>
+			<item value="name"/>
+			<item value="session.loginUser"/>
+			<item value="loginuser"/>
+			<item value="login"/>
+			<item value="Reservation Confirmation"/>
+			<item value="sendReservationConfirmationEmail"/>
 			<item value="email"/>
+			<item value="emailService.sendEmail"/>
+			<item value="loginUser"/>
 			<item value="mail"/>
 			<item value="&lt;form id=&quot;reserve&quot; action=&quot;reserve&quot; autocomplete=&quot;off&quot; method=&quot;post&quot;&gt;"/>
 			<item value="reservationMessage"/>
 			<item value="sendEmail"/>
-			<item value="findAllReserve"/>
-			<item value="example.practice"/>
-			<item value="birth"/>
-			<item value="bir"/>
-			<item value="enable"/>
-			<item value="회원"/>
-			<item value="예"/>
-			<item value="name"/>
-			<item value="username"/>
-			<item value="boo"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

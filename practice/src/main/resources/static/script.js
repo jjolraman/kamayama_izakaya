@@ -85,11 +85,3 @@ $(document).ready(function(){
 			function showEmailModal() {
 				document.getElementById('emailModal').style.display = 'block';
 			}
-
-		
-		// 이메일로 예약 조회하는 함수 (실제 구현 필요)
-		function checkReservation() {
-		    var email = document.getElementById('emailInput').value;
-		    console.log(email); // 이메일 값 출력. 실제로는 예약 조회 로직 구현 필요.
-		    // 예약 조회 로직을 여기에 구현합니다. 예: AJAX 요청 등
-		}

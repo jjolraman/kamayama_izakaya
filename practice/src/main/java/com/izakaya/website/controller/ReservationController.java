@@ -36,7 +36,7 @@ public class ReservationController {
     
     @Autowired
     private JavaMailSender javaMailSender;
-    
+    /*예약 폼 이동*/
     @GetMapping("reserve")
     public String reserveForm(@SessionAttribute(name="loginUser", required = false) User loginUser,
             @RequestParam(name="date", required = false) String dateString,
@@ -51,7 +51,7 @@ public class ReservationController {
         log.info("allReserve: {}", allReserve);
         return "reserve";
     }
-    
+    //예약 - 회원 비회원 나눠짐
     @PostMapping("reserve")
     public String reserve(@SessionAttribute(name="loginUser", required = false) User loginUser,
             @ModelAttribute Reserve reserve, HttpServletRequest request) {
@@ -73,22 +73,25 @@ public class ReservationController {
         
         return "redirect:/";
     }
-
+    //비회원 예약
     private void sendReservationEmail(String emailAddress, Reserve reserve) {
         MimeMessage message = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setFrom("your-email@example.com");
             helper.setTo(emailAddress);
-            helper.setSubject("Reservation Confirmation");
+            helper.setSubject("【かまやま】ご予約が確定しました。");
 
             // 이메일 본문에 예약 정보를 추가
             StringBuilder emailContent = new StringBuilder();
-            emailContent.append("Your reservation details:\n");
-            emailContent.append("Person: ").append(reserve.getPerson()).append("\n");
-            emailContent.append("Menu: ").append(reserve.getMenu()).append("\n");
-            emailContent.append("Date: ").append(reserve.getDate()).append("\n");
-            emailContent.append("Time: ").append(reserve.getTime()).append("\n");
+            emailContent.append("ご予約内容\n");
+            emailContent.append("■来店日時: ").append(reserve.getDate()).append(" ").append(reserve.getTime()).append("\n");
+            emailContent.append("■コース: ").append(reserve.getMenu()).append("\n");
+            emailContent.append("■人數: ").append(reserve.getPerson()).append("名様\n");
+            emailContent.append("この度は、当店をご予約いただきありがとうございます。\n");
+            emailContent.append("スタッフ一同、お会いできますことを楽しみにお待ちしております。\n");
+            emailContent.append("どうぞ、お気をつけてお越しください。\n");
+            emailContent.append("ー居酒屋かまやまー\n");
             helper.setText(emailContent.toString());
 
             javaMailSender.send(message);
@@ -96,7 +99,7 @@ public class ReservationController {
             log.error("Failed to send email for reservation confirmation: {}", e.getMessage());
         }
     }
-    
+    /*예약조회*/
     @GetMapping("reserved/list")
     public String findReserve(@SessionAttribute(name="loginUser", required = false) User loginUser,
             Model model) {
@@ -105,20 +108,34 @@ public class ReservationController {
         return "/reserved/list";
     }
     
+    /*비회원 예약조회 이동*/
+	@GetMapping("reserved/findEmail")
+	public String findByEmail() {
+		return "/reserved/findEmail";
+	}
+	
+    /*비회원 예약조회*/
     @GetMapping("reserved/nonList")
     public String findReserve(Model model) {
         return "/reserved/nonList";
     }
-    
+    /*예약변경*/
     @GetMapping("reserved/update/{reserveId}")
     public String updateForm(@PathVariable(name="reserveId") Long reserveId) {
         reserveService.deleteReserve(reserveId);
         return "redirect:/reserve";
     }
-        
+    /*예약취소*/
     @GetMapping("reserved/delete/{reserveId}")
     public String deleteReserve(@PathVariable(name="reserveId") Long reserveId) {
         reserveService.deleteReserve(reserveId);
         return "redirect:/reserved/list";
     }
+    
+    /*비회원 예약취소*/
+	@GetMapping("reserved/remove/{email}")
+	public String removeReserve(@PathVariable(name="email") String email) {
+		reserveService.deleteReserves(email);
+		return "redirect:/";
+	}
 }

@@ -71,12 +71,12 @@ header {
 	animation-fill-mode: both;
 	animation-duration: 0.3s;		/*アニメーションを実行する時間。「s」は秒の事。*/
 	animation-iteration-count:1;	/*実行する回数。*/
-	animation-delay: 4.5s;			/*アニメーションの開始を遅らせる指定。秒。*/
+	animation-delay: 1s;			/*アニメーションの開始を遅らせる指定。秒。*/
 	animation-name: frame1;			/*冒頭の「@keyframes」につけている名前*/
 }
 /*ヘッダーにマウスオンした場合*/
 header:hover {
-	overflow: auto;
+	overflow: hidden;
 }
 /*ロゴ画像*/
 header h1 {
@@ -103,7 +103,8 @@ ul.icon img {
 }
 /*メニュー１個あたりの設定*/
 #menubar li a {
-	display:  block;text-decoration: none;
+	display:  block;
+	text-decoration: none;
 	padding: 20px 5px;	/*上下、左右への余白*/
 	line-height: 1.5;	/*行間*/
 }
@@ -122,7 +123,7 @@ ul.icon img {
 /*mainブロック*/
 #main {
 	width: 75%;			/*ブロックの幅*/
-	padding: 100px 0;	/*上下、左右へのブロック内の余白*/
+	padding: 30px 0;	/*上下、左右へのブロック内の余白*/
 	overflow: auto;overflow-x: hidden;
 	position: absolute;
 	left: 20%;
@@ -134,7 +135,7 @@ ul.icon img {
 	animation-fill-mode: both;
 	animation-duration: 0.3s;		/*実行する時間。「s」は秒の事。*/
 	animation-iteration-count:1;	/*実行する回数。*/
-	animation-delay: 4.5s;			/*アニメーションの開始を遅らせる指定。秒。*/
+	animation-delay: 1s;			/*アニメーションの開始を遅らせる指定。秒。*/
 	animation-name: frame1;			/*冒頭の「@keyframes」につけている名前*/
 	bottom: 50px;	/*下からのブロックの配置指定*/
 }
@@ -145,6 +146,7 @@ ul.icon img {
 	padding: 0 20px;		/*上下、左右への余白*/
 	font-size: 30px;		/*文字サイズ*/
 	border-bottom: 1px solid #fff;	/*下線の幅、線種、色*/
+	text-align: center;
 }
 /*メインコンテンツのh3タグ設定*/
 #main h3 {
@@ -172,7 +174,8 @@ ul.icon img {
 /*box1,box2共通設定
 ---------------------------------------------------------------------------*/
 .box1, .box2 {
-	text-shadow: none;position: relative;
+	text-shadow: none;
+	position: relative;
 	background: #fff;	/*背景色*/
 	color: #666;		/*文字色*/
 	line-height: 1.5;	/*行間*/
@@ -209,7 +212,7 @@ ul.icon img {
 ---------------------------------------------------------------------------*/
 /*ボックス１個あたりの設定*/
 .box1 {
-	margin: 0 2% 20px;		/*上、左右、下へのボックスの外に空けるスペース*/
+	margin: 50px 2% 50px;		/*上、左右、下へのボックスの外に空けるスペース*/
 	padding: 3%;			/*ボックス内の余白*/
 }
 /*box1内のfigure(画像)タグ*/
@@ -508,7 +511,8 @@ header {
 }
 /*メニュー１個あたりの設定*/
 #menubar-s nav li a {
-	display: block;text-decoration: none;
+	display: block;
+	text-decoration: none;
 	border-bottom: 1px solid #fff;	/*下の線の幅、線種、色*/
 	font-size: 20px;	/*文字サイズ*/
 	padding: 10px 20px;	/*上下、左右へのメニュー内の余白*/
@@ -698,4 +702,286 @@ dl.menu dd {
 .ws,.wl {width: 94%;}
 .big1 {font-size: 18px;letter-spacing: normal;}
 
+}
+
+/* Q&A 게시판
+---------------------------------------------------------------------------*/
+#question{
+	width: 80%;
+	height: 90%;
+	margin: 0 auto;
+	margin-top: 2%;
+	margin-left: 17.5%;
+	background-color: rgba(255, 255, 255, 0.5);
+	border: 1px solid #000;
+}
+
+.q_container{
+	margin-top: 2%;
+}
+
+.form-label{
+	font-size: 1.4rem;
+	margin-left: 6%;
+	color: #fff;;
+}
+
+.form-control{
+	display: block;
+	padding-top: 0.375rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.375rem;
+    padding-left: 0.75rem;
+	width: 85%;
+	margin: 0 auto;
+	font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.5;
+	border: 2px solid #fff;
+	border-radius: 5px;
+}
+
+.q_contents{
+	margin-top: 3%;
+}
+
+.btn{
+	display: inline-block;
+	width: 8%;
+	height: 40px;
+	margin-top: 3%;
+	border-radius: 5px;
+	font-size: 1.1rem;
+	border: none;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.btn:hover{
+	background-color: #f4f2f2b4;
+	transition: all 0.3s;
+}
+
+/* Q&A 게시판 목록
+---------------------------------------------------------------------------*/
+#lquestion{
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+	margin-top: 2%;
+	margin-left: 17.5%;
+	background-color: rgba(255, 255, 255, 0.5);
+	border: 1px solid #000;
+}
+
+.lcontainer{
+	margin-top: 1rem;
+}
+
+.table{
+	--bs-table-color-type: initial;
+    --bs-table-bg-type: initial;
+    --bs-table-color-state: initial;
+    --bs-table-bg-state: initial;
+    --bs-table-color: var(--bs-emphasis-color);
+    --bs-table-bg: var(--bs-body-bg);
+    --bs-table-border-color: var(--bs-border-color);
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: var(--bs-emphasis-color);
+    --bs-table-striped-bg: rgba(var(--bs-emphasis-color-rgb), 0.05);
+    --bs-table-active-color: var(--bs-emphasis-color);
+    --bs-table-active-bg: rgba(var(--bs-emphasis-color-rgb), 0.1);
+    --bs-table-hover-color: var(--bs-emphasis-color);
+    --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), 0.075);
+    width: 100%;
+    margin-bottom: 1rem;
+    vertical-align: top;
+    border-color: var(--bs-table-border-color);
+}
+
+thead.table-light{
+	--bs-table-color: #ffffff;
+    --bs-table-bg: #f8f9fa;
+    --bs-table-border-color: #c6c7c8;
+    --bs-table-striped-bg: #ecedee;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #dfe0e1;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #e5e6e7;
+    --bs-table-hover-color: #000;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+	border-bottom: 1px solid #fff;
+}
+
+th{
+	padding-bottom: 0.7rem;
+	padding-left: 0.5rem;
+}
+
+td{
+	text-align:center;
+	padding: 0.7rem 0;
+}
+
+.title{
+	color: #245af9;
+}
+
+/* Q&A 게시판 글상세조회
+---------------------------------------------------------------------------*/
+.vcontainer{
+	width: 90%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.vcontainer > h2 {
+	font-size: 2rem;
+	padding-top: 1.5rem;
+}
+
+.card-header > h3{
+	padding: 0.8rem;
+	border-bottom: 1px solid;
+}
+
+.card-body > p{
+	padding: 0.8rem;
+	border-bottom: 1px solid;
+}
+
+.card{
+	position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 0.25rem;
+}
+
+.vbtn{
+	color: #fff;
+    background-color: #ffffff;
+    border-color: #6c757d;
+	display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+}
+
+.vbtn:hover{
+	background-color: #d6d6d6;
+	color: #fff;
+	transition: all 0.3s;
+}
+
+.vsbtn{
+	color: #fff;
+    background-color: #ea2b3e;
+    border-color: #dc3545;
+	display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+	margin: 1rem 1%;
+}
+
+.vsbtn:hover{
+	background-color: #c72434;
+	transition: all 0.3s;
+}
+
+.card-footer{
+	padding: 0.8rem;
+}
+
+/* Q&A 게시판 글수정
+---------------------------------------------------------------------------*/
+.ucard-header{
+	margin-top: 2%;
+}
+
+.form-control{
+	margin-bottom: 5%;
+}
+
+.usbtn{
+	color: #fff;
+    background-color: #ea2b3e;
+    border-color: #dc3545;
+	display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+	margin-top: 1rem;
+}
+
+.usbtn:hover{
+	background-color: #c72434;
+	transition: all 0.3s;
+}
+
+.ubtn{
+	color: #fff;
+    background-color: #ffffff;
+    border-color: #6c757d;
+	display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+	margin-top: 1rem;
+	margin-left: 1%;
+}
+
+.ubtn:hover{
+	background-color: #d6d6d6;
+	color: #fff;
+	transition: all 0.3s;
 }
