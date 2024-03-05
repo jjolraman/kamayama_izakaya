@@ -1,0 +1,31 @@
+server:
+  port: 9000
+  
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@//localhost:1521/xe
+    username: users
+    password: 1234
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: okachimachi0522@gmail.com
+    password: aewu xpag fjje ylhf
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  web:
+    resources:
+      static-locations: classpath:/static/
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+    open-in-view: false
+
