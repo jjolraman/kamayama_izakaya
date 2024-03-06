@@ -80,8 +80,4 @@ $(document).ready(function(){
 			    console.error('폼 제출 중 에러 발생', error);
 			  });
 			}
-		*/
-		// 비회원 예약시 팝업창 열기
-			function showEmailModal() {
-				document.getElementById('emailModal').style.display = 'block';
-			}
+		*/	

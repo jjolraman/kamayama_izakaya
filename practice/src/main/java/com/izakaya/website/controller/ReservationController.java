@@ -57,8 +57,8 @@ public class ReservationController {
             @ModelAttribute Reserve reserve, HttpServletRequest request) {
         // 필수 정보가 모두 입력되었는지 확인
         if (reserve.getMenu() == null || reserve.getDate() == null || reserve.getTime() == null || reserve.getPerson() == 0) {
-            // 필수 정보 중 하나라도 누락된 경우 예약을 처리하지 않고 이전 페이지로 이동
-            return "redirect:/previous-page"; // 이전 페이지로 리다이렉트
+            // 필수 정보 중 하나라도 누락된 경우 예약을 처리하지 않고 예약 페이지로 이동
+            return "redirect:/reserve"; 
         }
         
         // 로그인한 사용자인 경우
@@ -122,11 +122,13 @@ public class ReservationController {
 		return "/reserved/findEmail";
 	}
 	
-    /*비회원 예약조회*/
-    @GetMapping("reserved/nonList")
-    public String findReserve(Model model) {
-        return "/reserved/nonList";
-    }
+	/*비회원 예약조회*/
+	@GetMapping("reserved/nonList")
+	public String findReserve(@RequestParam(name="email", required = false) String email ,Model model) {
+		List<Reserve> byEmail = reserveService.findReservesByEmail(email);
+		model.addAttribute("reserves", byEmail);
+		return "/reserved/nonList";
+	}
     /*예약변경*/
     @GetMapping("reserved/update/{reserveId}")
     public String updateForm(@PathVariable(name="reserveId") Long reserveId) {
