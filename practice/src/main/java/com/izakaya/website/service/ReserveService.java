@@ -64,7 +64,7 @@ public class ReserveService {
                            + "■来店日時: " + reserve.getDate()
                            + " " + reserve.getTime() + "\n"
                            + "■コース: " + reserve.getMenu()
-                           + "■人數: " + reserve.getPerson()+"名様" + "\n"
+                           + "■人数: " + reserve.getPerson()+"名様" + "\n"
                            + " この度は、当店をご予約いただきありがとうございます。" + "\n"
                            + "スタッフ一同、お会いできますことを楽しみにお待ちしております。"  + "\n"
                            + "どうぞ、お気をつけてお越しください。" + "\n"

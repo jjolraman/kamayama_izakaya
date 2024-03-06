@@ -87,7 +87,7 @@ public class ReservationController {
             emailContent.append("ご予約内容\n");
             emailContent.append("■来店日時: ").append(reserve.getDate()).append(" ").append(reserve.getTime()).append("\n");
             emailContent.append("■コース: ").append(reserve.getMenu()).append("\n");
-            emailContent.append("■人數: ").append(reserve.getPerson()).append("名様\n");
+            emailContent.append("■人数: ").append(reserve.getPerson()).append("名様\n");
             emailContent.append("この度は、当店をご予約いただきありがとうございます。\n");
             emailContent.append("スタッフ一同、お会いできますことを楽しみにお待ちしております。\n");
             emailContent.append("どうぞ、お気をつけてお越しください。\n");
