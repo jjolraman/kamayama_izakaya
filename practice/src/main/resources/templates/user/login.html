@@ -68,7 +68,7 @@
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
             if (email === "" || password === "") {
-                document.getElementById("warning").innerText = "로그인ID와 패스워드는 필수 항목입니다.";
+                document.getElementById("warning").innerText = "ログインIDとパスワードは必須項目です。";
                 return false;
             }
             return true;
@@ -79,13 +79,13 @@
     <div class="container">
         <h2>로그인</h2>
         <form action="login" method="post" onsubmit="return login()">
-            <input type="text" id="email" name="email" placeholder="메일주소">
-            <input type="password" id="password" name="password" placeholder="패스워드">
+            <input type="text" id="email" name="email" placeholder="メールアドレス">
+            <input type="password" id="password" name="password" placeholder="パスワード">
             <button type="submit">로그인</button>
             <div id="warning" class="warning"></div>
            
         </form>
-        <a href="join" class="signup-link">회원가입</a>
+        <a href="join" class="signup-link">会員登録</a>
     </div>
 </body>
 </html>

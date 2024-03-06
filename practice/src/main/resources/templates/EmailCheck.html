@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>알림</title>
+<script>
+    // 확인 버튼을 클릭할 때 이전 페이지로 이동하는 함수
+    function redirectToJoin() {
+        window.location.href = "/join";
+    }
+</script>
+</head>
+<body>
+<script>
+    // 알림 창을 보여주는 함수
+    window.onload = function() {
+        alert("중복된 이메일입니다.");
+        redirectToJoin(); // 확인을 누르면 회원가입 페이지로 이동
+    };
+</script>
+</body>
+</html>

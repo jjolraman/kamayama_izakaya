@@ -46,24 +46,29 @@
 </head>
 <body>
 <form action="join" method="post" id="signup-form">
-    메일주소: <input type="email" name="email" id="email" required><span class="error-message" id="email-error"></span><br>
-    패스워드: <input type="password" name="password" id="password" required><span class="error-message" id="password-error"></span><br>
+    메일 주소: <input type="email" name="email" id="email" required><span class="error-message" id="email-error"></span><br>
+    비밀번호: <input type="password" name="password" id="password" required><span class="error-message" id="password-error"></span><br>
     이름: <input type="text" name="name" id="name" required><span class="error-message" id="name-error"></span><br>
     전화번호: <input type="tel" name="tel" id="tel" placeholder="예: 01012345678" required><span class="error-message" id="tel-error"></span><br>
     <input type="submit" value="회원가입" id="submit-button">
 </form>
 
 <script>
-document.getElementById('signup-form').addEventListener('submit', function(event) {
-    // 폼이 제출될 때 실행되는 코드
+document.getElementById('signup-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // 기본 제출 행동 방지
+
+    // 폼 입력 값 가져오기
     var userEmail = document.getElementById('email').value;
     var userPassword = document.getElementById('password').value;
     var userName = document.getElementById('name').value;
     var userTel = document.getElementById('tel').value;
 
-    // 이메일 주소 유효성 검사
+    // 유효성 검사
+    var isFormValid = true;
+
+    // 이메일 유효성 검사
     if (!userEmail.includes('@')) {
-        event.preventDefault();
+        isFormValid = false;
         document.getElementById('email-error').innerText = '이메일 주소 형식이 올바르지 않습니다.';
     } else {
         document.getElementById('email-error').innerText = '';
@@ -71,7 +76,7 @@ document.getElementById('signup-form').addEventListener('submit', function(event
 
     // 비밀번호 유효성 검사
     if (userPassword.length < 6) {
-        event.preventDefault();
+        isFormValid = false;
         document.getElementById('password-error').innerText = '비밀번호는 최소 6자 이상이어야 합니다.';
     } else {
         document.getElementById('password-error').innerText = '';
@@ -79,7 +84,7 @@ document.getElementById('signup-form').addEventListener('submit', function(event
 
     // 이름 유효성 검사
     if (!userName) {
-        event.preventDefault();
+        isFormValid = false;
         document.getElementById('name-error').innerText = '이름을 입력하세요.';
     } else {
         document.getElementById('name-error').innerText = '';
@@ -87,12 +92,36 @@ document.getElementById('signup-form').addEventListener('submit', function(event
 
     // 전화번호 유효성 검사
     if (!/^\d{11}$/.test(userTel)) {
-        event.preventDefault();
+        isFormValid = false;
         document.getElementById('tel-error').innerText = '전화번호 형식이 올바르지 않습니다.';
     } else {
         document.getElementById('tel-error').innerText = '';
     }
+
+    if (isFormValid) {
+        // 중복된 이메일 확인
+        var isEmailDuplicate = await checkEmailDuplicate(userEmail);
+        if (isEmailDuplicate) {
+            alert('중복된 이메일입니다.');
+        } else {
+            // 폼 제출
+            event.target.submit();
+        }
+    }
 });
+
+// 이메일 중복 확인 함수
+async function checkEmailDuplicate(email) {
+    try {
+        var response = await fetch('/checkEmailDuplicate?email=' + email);
+        var data = await response.json();
+        return data.isDuplicate;
+    } catch (error) {
+        console.error('Error checking email duplicate:', error);
+        return true; // 오류 발생 시 중복된 것으로 가정
+    }
+}
 </script>
+
 </body>
 </html>

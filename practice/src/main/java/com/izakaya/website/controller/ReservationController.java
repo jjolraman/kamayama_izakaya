@@ -55,7 +55,14 @@ public class ReservationController {
     @PostMapping("reserve")
     public String reserve(@SessionAttribute(name="loginUser", required = false) User loginUser,
             @ModelAttribute Reserve reserve, HttpServletRequest request) {
-        if(loginUser != null) {
+        // 필수 정보가 모두 입력되었는지 확인
+        if (reserve.getMenu() == null || reserve.getDate() == null || reserve.getTime() == null || reserve.getPerson() == 0) {
+            // 필수 정보 중 하나라도 누락된 경우 예약을 처리하지 않고 이전 페이지로 이동
+            return "redirect:/previous-page"; // 이전 페이지로 리다이렉트
+        }
+        
+        // 로그인한 사용자인 경우
+        if (loginUser != null) {
             reserve.setUser(loginUser);
         } else {
             // 비로그인 사용자의 경우 이메일 주소를 폼에서 받아옴
@@ -73,6 +80,7 @@ public class ReservationController {
         
         return "redirect:/";
     }
+
     //비회원 예약
     private void sendReservationEmail(String emailAddress, Reserve reserve) {
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -96,7 +104,7 @@ public class ReservationController {
 
             javaMailSender.send(message);
         } catch (MessagingException e) {
-            log.error("Failed to send email for reservation confirmation: {}", e.getMessage());
+            log.error("이메일 송신 실패: {}", e.getMessage());
         }
     }
     /*예약조회*/

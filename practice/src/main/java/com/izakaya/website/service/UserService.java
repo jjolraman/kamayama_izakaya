@@ -29,10 +29,15 @@ public class UserService {
 
     @Transactional
     public void create(User user) {
+        // 이메일 중복 확인
+        if (checkEmailDuplicate(user.getEmail())) {
+            // 중복된 이메일이 있을 경우 예외 처리 또는 사용자에게 알림
+            throw new RuntimeException("중복된 이메일입니다.");
+        }
+
         String verificationToken = generateVerificationToken();
         UserEntity userEntity = UserEntity.builder()
                 .id(user.getId())
-//                .username(user.getUsername())
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .name(user.getName())
@@ -44,17 +49,11 @@ public class UserService {
         sendVerificationEmail(user.getEmail(), verificationToken);
     }
 
-//    public User login(String username, String password) {
-//        Optional<UserEntity> optionalUser = userRepository.findByEmail(user.getEmail());
-//        if (optionalUser.isPresent()) {
-//            UserEntity userEntity = optionalUser.get();
-//            if (userEntity.getPassword().equals(password)) {
-//                return userEntity.toUser();
-//            }
-//        }
-//        return null;
-//    }
-    
+    public boolean checkEmailDuplicate(String email) {
+        Optional<UserEntity> existingUser = userRepository.findByEmail(email);
+        return existingUser.isPresent();
+    }
+
     public User login(User user) {
 		Optional<UserEntity> byuserEmail = userRepository.findByEmail(user.getEmail());
 		
@@ -79,14 +78,6 @@ public class UserService {
         return userList;
     }
 
-//    public User findById(Long id) {
-//        Optional<UserEntity> userEntity = userRepository.findById(id);
-//        if (userEntity.isPresent()) {
-//            return userEntity.get().toUser();
-//        }
-//        return null;
-//    }
-    
     public User findByEmail(String email){
 		Optional<UserEntity> userEntity = userRepository.findByEmail(email);
 		
@@ -102,7 +93,6 @@ public class UserService {
         if (byId.isPresent()) {
             UserEntity userEntity = byId.get();
             userEntity.update(user.getId(),
-//                    user.getUsername(),
             		user.getEmail(),
                     user.getPassword(),
                     user.getName(),

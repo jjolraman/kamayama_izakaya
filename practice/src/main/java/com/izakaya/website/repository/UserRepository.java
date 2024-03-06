@@ -14,4 +14,10 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 	Optional<UserEntity> findByEmail(String email);
 	List<UserEntity> findByName(String name);
     Optional<UserEntity> findByVerificationToken(String verificationToken);
-}
+    boolean existsByEmail(String email); // 새로운 메서드: 이메일을 기준으로 사용자가 존재하는지 확인
+
+
+    }
+
+    
+
