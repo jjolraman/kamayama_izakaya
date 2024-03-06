@@ -50,8 +50,7 @@
 <li><a href="/reserve">ご予約</a></li>
 <li><a th:if="${session.loginUser}" href="/contact">お問合せ</a></li>
 <li class="current"><a th:if="${session.loginUser}" href="/reserved/list">予約確認</a></li>
-<li><a th:unless="${session.loginUser}" href="/reserved/findEmail">予約確認</a></li>
-<li><a th:if="${session.loginUser}" href="logout" class="popup-btn">ログアウト</a></li>
+<li><a th:if="${session.loginUser}" href="/logout" class="popup-btn">ログアウト</a></li>
 <li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
 </ul>
 </nav>
@@ -72,7 +71,6 @@
 <li><a href="/reserve">ご予約</a></li>
 <li><a th:if="${session.loginUser}" href="/contact">お問合せ</a></li>
 <li><a th:if="${session.loginUser}" href="/reserved/list">予約確認</a></li>
-<li><a th:unless="${session.loginUser}" href="/reserved/findEmail">予約確認</a></li>
 <li><a th:if="${session.loginUser}" href="/logout" class="popup-btn">ログアウト</a></li>
 <li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
 </ul>

@@ -28,6 +28,18 @@
     if (OCwindowWidth() <= 900) {
     	open_close("menubar_hdr", "menubar-s");
     }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+		var removeButton = document.querySelector('.remove');
+		removeButton.onclick = function() {
+		document.getElementById('overlay').style.display = 'none';
+		};
+    });
+    
+	function showModal() {
+		document.getElementById('overlay').style.display = 'block';
+	}
+		
 </script>
 <style>
 /* 로그인 버튼 스타일 */
@@ -56,7 +68,7 @@
 <li><a href="reserve">ご予約</a></li>
 <li><a th:if="${session.loginUser}" href="contact">お問合せ</a></li>
 <li><a th:if="${session.loginUser}" href="reserved/list">予約確認</a></li>
-<li><a th:unless="${session.loginUser}" href="reserved/findEmail">予約確認</a></li>
+<li><a th:unless="${session.loginUser}" onclick="showModal()">予約確認</a></li>
 <li><a th:if="${session.loginUser}" href="logout" class="popup-btn">ログアウト</a></li>
 <li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
 </ul>
@@ -77,7 +89,7 @@
 <li><a href="menu">メニュー</a></li>
 <li><a href="reserve">ご予約</a></li>
 <li><a th:if="${session.loginUser}" href="/reserved/list">予約確認</a></li>
-<li><a th:unless="${session.loginUser}" href="reserved/findEmail">予約確認</a></li>
+<li><a th:unless="${session.loginUser}" onclick="showModal()">予約確認</a></li>
 <li><a th:if="${session.loginUser}" href="logout" class="popup-btn">ログアウト</a></li>
 <li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
 </ul>
@@ -140,5 +152,19 @@
 <!--メニュー開閉ボタン-->
 <div id="menubar_hdr" class="close"></div>
 
+<!-- 비회원 예약조회 -->
+<div class="overlay" id="overlay">
+	<div class="popup" id="popup">
+	<span class="remove">&times;</span>
+		<h2 >メールを入力してください。</h2>
+		<form action="/reserved/nonList" method="get">
+	     <div class="form-group">
+	       <label for="name">メール :</label>
+	       <input type="text" id="email" name="email" style="border: 1px solid #000">
+	     </div>
+	     <button type="submit">検索する</button>
+		</form>	
+	</div>
+</div>
 </body>
 </html>

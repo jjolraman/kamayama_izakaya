@@ -49,26 +49,8 @@ public class ReserveService {
 	            .build();
 
 	    	reserveRepository.save(reserveEntity);
-		}
-	    
-/*		Optional<UserEntity> byId = userRepository.findById(reserve.getUser().getId());
-		
-		if(byId.isPresent()) {
-			UserEntity userEntity = byId.get();
-			
-			ReserveEntity reserveEntity = ReserveEntity.builder()
-					.id(reserve.getId())
-					.user(userEntity)
-					.person(reserve.getPerson())
-					.date(reserve.getDate())
-					.time(reserve.getTime())
-					.member(userEntity.getMember())
-					.build();				
-			
-			reserveRepository.save(reserveEntity);
-		}*/
+	}
 
-	
 	/*날짜에 해당하는 모든예약조회*/
 	public List<Reserve> findAllReserve(String date) { 
 		List<ReserveEntity> byDate = reserveRepository.findByDate(date);
