@@ -141,6 +141,7 @@ ul.icon img {
 }
 /*メインコンテンツのh2タグ設定*/
 #main h2 {
+	color: #fff;
 	clear: both;
 	margin-bottom: 20px;	/*見出しの下に空けるスペース*/
 	padding: 0 20px;		/*上下、左右への余白*/

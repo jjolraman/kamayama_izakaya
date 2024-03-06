@@ -28,6 +28,11 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
     private final UserService userService;
     
+    @GetMapping("test")
+	public String test() {
+		return "/test.html";
+	}
+    
     /*메뉴 이동*/
 	@GetMapping("menu")
 	public String menu() {
