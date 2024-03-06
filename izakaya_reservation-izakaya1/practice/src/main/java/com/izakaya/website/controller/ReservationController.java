@@ -64,12 +64,6 @@ public class ReservationController {
 		return "/reserved/list";
 	}
 	
-	/*비회원 예약조회 이동*/
-	@GetMapping("reserved/findEmail")
-	public String findByEmail() {
-		return "/reserved/findEmail";
-	}
-	
 	/*비회원 예약조회*/
 	@GetMapping("reserved/nonList")
 	public String findReserve(@RequestParam(name="email", required = false) String email ,Model model) {

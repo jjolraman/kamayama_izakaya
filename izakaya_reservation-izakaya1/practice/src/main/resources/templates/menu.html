@@ -57,11 +57,6 @@
 			<li><a th:unless="${session.loginUser}" href="javascript:void(0)" onclick="openPopup('login')" class="popup-btn">ログイン</a></li>
 		</ul>
     </nav>
-    <ul class="icon">
-      <li><a href="#"><img src="images/icon_facebook.png" alt="Facebook"></a></li>
-      <li><a href="#"><img src="images/icon_twitter.png" alt="Twitter"></a></li>
-      <li><a href="#"><img src="images/icon_instagram.png" alt="Instagram"></a></li>
-    </ul>
     </header>
 
     <!--小さな端末用（900px以下端末）ブロック-->
@@ -100,29 +95,38 @@
 
           <div class="box1">
             <figure><img src="images/set_1.jpg" alt="メニュー名" /></figure>
-            <h4>set1 <br>3,000円</h4>
+            <h4>Set1☞ 様々な日本伝統のおかず盛り合わせ - 一汁三菜</h4>
+            <h4 th:if="${session.loginUser}"> 3,500円</h4>
+            <h4 th:unless="${session.loginUser}"> 5,000円 (会員割引価格:3,500円)</h4>
             <p>
-
+				季節の新鮮な野菜の漬物、柔らかい豆腐料理、香ばしい海藻サラダなど、多種多様な小鉢料理をご提供します。<br>
+				異なる味と栄養が詰まった一汁三菜で、皆様の食事をより豊かにしてくれます。
             </p>
             <span class="mark">人気</span>
           </div>
 
           <div class="box1">
             <figure><img src="images/set_2.jpg" alt="メニュー名" /></figure>
-            <h4>set2 <br>鳥歐焼鳥コース 16品 4,900円（5,390円税込）</h4>
+            <h4>Set2☞ 新鮮な刺身盛り合わせ - 海の宴</h4>
+            <h4 th:if="${session.loginUser}">4,550円</h4>
+            <h4 th:unless="${session.loginUser}">6,500円 (会員割引価格:4,550円)</h4>
             <p>
-              旬の前菜5種盛り/極濃厚鶏白湯スープ/おまかせ焼鳥5品/旬野菜串2品/名物鶏いくら/鹿と牡蠣の無化調ソーセージ/甘味<br />
+             厳選された新鮮な魚のみを使った刺身盛り合わせです。柔らかなサーモン、あっさりとしたマグロ、<br>
+             新鮮なエビとカニなどを一皿に盛り合わせました。レモンと野菜の新鮮さが加わり、<br>
+             海の幸の味を最大限に引き出します。
             </p>
             <span class="mark">人気</span>
           </div>
 
           <div class="box1">
             <figure><img src="images/set_3.jpg" alt="メニュー名" /></figure>
-            <h4>Set3 <br>歓送迎会に！天草・牛深直送のお刺身付きコース（8品）＆飲み放題付！4500円(税込)</h4>
+            <h4>Set3☞ 新鮮な刺身盛り合わせ - 海の宴</h4>
+            <h4 th:if="${session.loginUser}">6,090円</h4>
+            <h4 th:unless="${session.loginUser}">8,700円 (会員割引価格:4,550円)</h4>
             <p>
-              熊本県天草牛深産の新鮮な魚介類や全国各地の厳選したこだわりの素材を使った旬を味わえる！
-              全室個室で宴会や打ち上げなどにおすすめのコースになっております！
-              お酒に合うお食事も多数ありますのでぜひこのコースでご堪能ください♪※写真はイメージです。<br />
+              最高品質の新鮮な魚を使った刺身プラッターです。マグロ、サーモン、白身魚など様々な種類の魚が<br>
+              専門シェフの手によって芸術的に盛り付けられています。豪華な装飾とともに提供され、<br>
+              目にも口にも楽しい食事を体験できます。
             </p>
             <span class="mark">人気</span>
           </div>
