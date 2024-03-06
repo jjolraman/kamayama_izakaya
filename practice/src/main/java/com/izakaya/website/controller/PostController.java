@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-//import com.izakaya.website.entity.PostEntity;
+import com.izakaya.website.entity.PostEntity;
 import com.izakaya.website.model.Post;
 import com.izakaya.website.model.User;
 import com.izakaya.website.service.PostService;
 
-//import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,30 +27,31 @@ import lombok.extern.slf4j.Slf4j;
 public class PostController {
 	
 	private final PostService postService;
-	/*게시글 작성 폼*/
+	
 	@GetMapping("create")
 	public String post() {
 		return "post/create";
 	}
 	
-	/*게시글 작성 처리*/
 	@PostMapping("create")
 	public String postCreate(@ModelAttribute Post post,
-							 @SessionAttribute(name="loginUser") User user) {
+							 @SessionAttribute(name="loginUser", required = false) User user) {
+		if(user == null) {
+			return "redirect:/";
+		}
 		post.setUser(user);
 		postService.create(post);
 		return "redirect:/post/list";
 	}
 	
-	/*게시글 목록*/
-	@GetMapping("list")
+	@GetMapping("/list")
 	public String findAll(Model model) {
 		List<Post> postList = postService.findAll();
 		model.addAttribute("posts", postList);
 		return "post/list";
 	} 
 	
-	/*게시글 상세조회*/
+
 	@GetMapping("{postId}")
 	public String viewPost(@PathVariable(name = "postId") Long postId,
 			Model model) {
@@ -83,4 +84,5 @@ public class PostController {
 		postService.removePost(postId, loginUser);
 		return "redirect:/post/list";
 	}
+	
 }

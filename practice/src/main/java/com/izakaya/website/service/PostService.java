@@ -67,6 +67,7 @@ public class PostService {
 	}
 	
 	/*게시글 삭제*/
+	@Transactional
 	public void removePost(Long postId, User logUser) {
 		Optional<PostEntity> postById = postRepository.findById(postId);
 		
@@ -77,6 +78,7 @@ public class PostService {
 	}
 	
 	/*게시글 수정*/
+	@Transactional
 	public void editPost(Post post, Long postId) {
 		Optional<PostEntity> postById = postRepository.findById(postId);
 		

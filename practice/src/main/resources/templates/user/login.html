@@ -2,25 +2,28 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>로그인</title>
+    <title>ログイン</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
+            font-family: Arial, sans-serif; 
+            background-color: #f8f8f8; /* 흰색 배경 */
             margin: 0;
-            padding: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
         .container {
-            background-color: #fff;
+            background-color: #f8f8f8; /* 흰색 배경 */
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            color: #333;
+            text-align: center; 
+            color: #333; 
+            width: 80%; 
+            max-width: 400px; 
+            margin: 0 auto; 
         }
         h2 {
             margin-bottom: 20px;
@@ -28,25 +31,26 @@
         form {
             margin-top: 20px;
         }
-        input[type="email"],
+        input[type="text"],
         input[type="password"],
         button {
             width: 100%;
             padding: 10px;
             margin-top: 10px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
+            border: 1px solid #ffa500; /* 주황색 테두리 */
+            border-radius: 5px; /* 둥근 테두리 */
+            font-size: 16px;
             box-sizing: border-box;
         }
         button {
-            background-color: #ff5733;
-            color: #fff;
+            background-color: #ff5733; /* 주황색 배경색 */
+            color: #ffffff; /* 흰색 글자색 */
             border: none;
             cursor: pointer;
         }
         button:hover {
-            background-color: #e24424;
+            background-color: #e24424; /* 호버 상태에서의 배경색 변경 */
         }
         .warning {
             color: red;
@@ -61,22 +65,13 @@
     </style>
     <script>
         function login() {
-            var username = document.getElementById("email").value;
+            var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
-            if (username === "" || password === "") {
+            if (email === "" || password === "") {
                 document.getElementById("warning").innerText = "ログインIDとパスワードは必須項目です。";
                 return false;
             }
-            
-            // 로그인 성공시 알림창 나온후 닫음.
-            alert("ログインに成功しました。");
-            closePopup();
             return true;
-        }
-
-        function closePopup() {
-            // 팝업 닫는 코드.
-            window.close();
         }
     </script>
 </head>
@@ -84,10 +79,11 @@
     <div class="container">
         <h2>ログイン</h2>
         <form action="login" method="post" onsubmit="return login()">
-            <input type="email" id="email" name="email" placeholder="ログインID">
+            <input type="text" id="email" name="email" placeholder="メールアドレス">
             <input type="password" id="password" name="password" placeholder="パスワード">
             <button type="submit">ログイン</button>
             <div id="warning" class="warning"></div>
+           
         </form>
         <a href="join" class="signup-link">会員登録</a>
     </div>

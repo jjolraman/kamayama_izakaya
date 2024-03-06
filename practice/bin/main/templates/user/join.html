@@ -46,70 +46,82 @@
 </head>
 <body>
 <form action="join" method="post" id="signup-form">
-    メールアドレス: <input type="email" name="email" id="email"><span class="error-message" id="email-error"></span><br>
-    パスワード: <input type="password" name="password" id="password"><span class="error-message" id="password-error"></span><br>
-    お名前: <input type="text" name="name" id="name"><span class="error-message" id="name-error"></span><br>
-    電話番語: <input type="tel" name="tel" id="tel"><span class="error-message" id="tel-error"></span><br>
+    メールアドレス: <input type="email" name="email" id="email" required><span class="error-message" id="email-error"></span><br>
+    パスワード: <input type="password" name="password" id="password" required><span class="error-message" id="password-error"></span><br>
+    お名前: <input type="text" name="name" id="name" required><span class="error-message" id="name-error"></span><br>
+    電話番語: <input type="tel" name="tel" id="tel" placeholder="例: 01012345678" required><span class="error-message" id="tel-error"></span><br>
     <input type="submit" value="会員登録" id="submit-button">
 </form>
 
 <script>
-    const form = document.getElementById('signup-form');
-    const emailField = document.getElementById('email');
-    const passwordField = document.getElementById('password');
-    const nameField = document.getElementById('name');
-    const telField = document.getElementById('tel');
-    const submitButton = document.getElementById('submit-button');
+document.getElementById('signup-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // 기본 제출 행동 방지
 
-    form.addEventListener('submit', function(event) {
-        if (!validateEmail(emailField.value)) {
-            document.getElementById('email-error').textContent = '正しいメールアドレスを入力してください。';
-            event.preventDefault();
+    // 폼 입력 값 가져오기
+    var userEmail = document.getElementById('email').value;
+    var userPassword = document.getElementById('password').value;
+    var userName = document.getElementById('name').value;
+    var userTel = document.getElementById('tel').value;
+
+    // 유효성 검사
+    var isFormValid = true;
+
+    // 이메일 유효성 검사
+    if (!userEmail.includes('@')) {
+        isFormValid = false;
+        document.getElementById('email-error').innerText = 'メールアドレスの形式が正しくありません。';
+    } else {
+        document.getElementById('email-error').innerText = '';
+    }
+
+    // 비밀번호 유효성 검사
+    if (userPassword.length < 6) {
+        isFormValid = false;
+        document.getElementById('password-error').innerText = 'パスワードは最低6文字以上必要です。';
+    } else {
+        document.getElementById('password-error').innerText = '';
+    }
+
+    // 이름 유효성 검사
+    if (!userName) {
+        isFormValid = false;
+        document.getElementById('name-error').innerText = 'お名前を入力してください。';
+    } else {
+        document.getElementById('name-error').innerText = '';
+    }
+
+    // 전화번호 유효성 검사
+    if (!/^\d{11}$/.test(userTel)) {
+        isFormValid = false;
+        document.getElementById('tel-error').innerText = '電話番語の形式が正しくありません。';
+    } else {
+        document.getElementById('tel-error').innerText = '';
+    }
+
+    if (isFormValid) {
+        // 중복된 이메일 확인
+        var isEmailDuplicate = await checkEmailDuplicate(userEmail);
+        if (isEmailDuplicate) {
+            alert('登録済みのメールアドレスです。');
+        } else {
+            // 폼 제출
+            event.target.submit();
         }
-        if (!validatePassword(passwordField.value)) {
-            document.getElementById('password-error').textContent = 'パスワードは6文字以上必要です。';
-            event.preventDefault();
-        }
-        if (!validateName(nameField.value)) {
-            document.getElementById('name-error').textContent = '名前を入力してください。';
-            event.preventDefault();
-        }
-        if (!validateTel(telField.value)) {
-            document.getElementById('tel-error').textContent = '電話番語を入力してください。';
-            event.preventDefault();
-        }
-    });
-
-    function validateEmail(email) {
-        // 이메일 유효성 검사 로직 추가
-        return /\S+@\S+\.\S+/.test(email);
     }
+});
 
-    function validatePassword(password) {
-        // 비밀번호 길이 유효성 검사 로직 추가
-        return password.length >= 6;
+// 이메일 중복 확인 함수
+async function checkEmailDuplicate(email) {
+    try {
+        var response = await fetch('/checkEmailDuplicate?email=' + email);
+        var data = await response.json();
+        return data.isDuplicate;
+    } catch (error) {
+        console.error('Error checking email duplicate:', error);
+        return true; // 오류 발생 시 중복된 것으로 가정
     }
-
-    function validateName(name) {
-        // 이름 입력 여부 확인
-        return name.trim() !== '';
-    }
-
-    function validateTel(tel) {
-        // 전화번호 입력 여부 확인
-        return tel.trim() !== '';
-    }
-
-    // 입력 필드를 떠날 때마다 에러 메시지를 제거합니다.
-    emailField.addEventListener('blur', clearErrorMessage.bind(null, 'email-error'));
-    passwordField.addEventListener('blur', clearErrorMessage.bind(null, 'password-error'));
-    nameField.addEventListener('blur', clearErrorMessage.bind(null, 'name-error'));
-    telField.addEventListener('blur', clearErrorMessage.bind(null, 'tel-error'));
-
-    function clearErrorMessage(id) {
-        document.getElementById(id).textContent = '';
-    }
+}
 </script>
+
 </body>
 </html>
-

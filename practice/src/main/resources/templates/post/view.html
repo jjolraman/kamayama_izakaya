@@ -1,53 +1,124 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시글 읽기</title>
-    <!-- Bootstrap CSS 추가 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script>
-    	function confirmRemove(postId) {
-    		if (confirm('정말 삭제하시겠습니까?')) {
-    			location.href='/post/delete/' + postId;
-    		}
-    	}
-    </script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>居酒屋かまやま</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ここにサイト説明を入れます">
+<meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/openclose.js"></script>
+<script src="/js/fixmenu_pagetop.js"></script>
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script>
+    function openPopup(url) {
+        window.open(url, "Popup", "width=400,height=400");
+    }
+
+    if (OCwindowWidth() <= 900) {
+	    open_close("menubar_hdr", "menubar-s");
+    }
+
+    function confirmRemove(postId) {
+        if (confirm('削除しますか？')) {
+            location.href='/post/delete/' + postId;
+        }
+    }
+</script>
+<style>
+/* 로그인 버튼 스타일 */
+.popup-btn {
+    color: #fff;
+    background-color: #ff5733;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+.popup-btn:hover {
+    background-color: #e24424;
+}
+</style>
 </head>
+
 <body>
-<!-- 네비게이션 바 -->
 
-<div class="container my-5">
-    <h2>게시글 읽기</h2>
+<header>
+<h1 id="logo"><a href="/"><img src="/images/logo.png" alt="居酒屋"></a></h1>
+<!--PC用（901px以上端末）メニュー-->
+<nav id="menubar">
+<ul>
+<li><a href="/">ホーム</a></li>
+<li><a href="/about">お店情報</a></li>
+<li><a href="/menu">メニュー</a></li>
+<li><a href="/reserve">ご予約</a></li>
+<li class="current"><a href="/contact">お問合せ</a></li>
+<li><a th:if="${session.loginUser}" href="/logout" class="popup-btn">ログアウト</a></li>
+</ul>
+</nav>
 
-    <!-- 게시글 상세 내용 -->
-    <div class="card" th:object="${post}">
-        <div class="card-header">
-            <!-- 게시글 제목 -->
-            <h3 th:text="*{title}">제목</h3>
-        </div>
-        <div class="card-body">
-            <!-- 게시글 내용 -->
-            <p th:text="*{content}">내용</p>
-        </div>
-        <div class="card-footer text-muted">
-            <!-- 게시글 작성자, 조회수, 등록일 -->
-            <span th:text="|작성자: *{user.email}|"></span>&emsp;&emsp;&emsp;
-          	<span>작성일: [[${#temporals.format(post.createTime, 'yyyy-MM-dd')}]]</span>
-        </div>
-    </div>
+</header>
 
-    <!-- 게시글 삭제 폼 -->
-    <th:block th:if="${session.loginUser != null and session.loginUser.id == post.user.id}">
-		<a th:href="@{/post/update/{id}(id=${post.id})}" class="btn btn-secondary mt-3">수정하기</a>
-        
-        <button type="button" class="btn btn-danger mt-3" th:onclick="|confirmRemove(${post.id})|">삭제하기</button>
-        <!-- 뒤로 가기 버튼 -->
-	<a href="list" class="btn btn-secondary mt-3">목록으로 돌아가기</a>
-	</th:block>
+<!--小さな端末用（900px以下端末）ブロック-->
+<div id="menubar-s">
+<nav>
+<ul>
+<li><a href="/">ホーム</a></li>
+<li><a href="/about">お店情報</a></li>
+<li><a href="/menu">メニュー</a></li>
+<li><a href="/reserve">ご予約</a></li>
+<li class="current"><a href="/contact">お問合せ</a></li>
+<li><a th:if="${session.loginUser}" href="/logout" class="popup-btn">ログアウト</a></li>
+</ul>
+</nav>
+
 </div>
 
-<!-- Bootstrap JS 및 의존성 스크립트 추가 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+<div id="question">
+    <div class="vcontainer">
+        <h2>掲示文</h2>
+    
+        <!-- 게시글 상세 내용 -->
+        <div class="card" th:object="${post}">
+            <div class="card-header">
+                <!-- 게시글 제목 -->
+                <h3 th:text="*{title}">タイトル</h3>
+            </div>
+            <div class="card-body">
+                <!-- 게시글 내용 -->
+                <p th:text="*{content}">内容</p>
+            </div>
+            <div class="card-footer text-muted">
+                <!-- 게시글 작성자, 조회수, 등록일 -->
+                <span th:text="|作成者: *{user.email}|"></span>&emsp;&emsp;&emsp;
+                <span>掲示日: [[${#temporals.format(post.createTime, 'yyyy-MM-dd')}]]</span>
+            </div>
+        </div>
+    
+        <!-- 게시글 삭제 폼 -->
+        <th:block th:if="${session.loginUser != null and session.loginUser.id == post.user.id}">
+            <a th:href="@{/post/update/{id}(id=${post.id})}" class="vbtn">修正する</a>
+            
+            <button type="button" class="vsbtn" th:onclick="|confirmRemove(${post.id})|">削除する</button>
+            <!-- 뒤로 가기 버튼 -->
+        <a href="list" class="vbtn">帰る</a>
+        </th:block>
+    </div>
+</div>
+<!--/#contents-->
+
+<!--背景画像2-->
+<aside id="mainimg">
+<div class="slide-sub2">slide-sub2</div>
+</aside>
+
+<!--PAGE TOPボタン（ページの上部へ戻るボタン）-->
+<p class="nav-fix-pos-pagetop"><a href="#"><img src="/images/icon_pagetop.png" alt="PAGE TOP"></a></p>
+
+<!--メニュー開閉ボタン-->
+<div id="menubar_hdr" class="close"></div>
+<!--メニューの開閉処理条件設定　900px以下-->
 </body>
 </html>

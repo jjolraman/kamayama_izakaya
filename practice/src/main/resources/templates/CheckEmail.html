@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>メール確認</title>
+    <style>
+        body {
+            background-color: #f8f8f8; /* 흰색 배경 */
+            font-family: Arial, sans-serif; /* 폰트 설정 */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .confirmation {
+            width: 80%; /* 너비 설정 */
+            max-width: 400px; /* 최대 너비 설정 */
+            padding: 20px; /* 안쪽 여백 설정 */
+            border: 2px solid #ff5733; /* 주황색 테두리 */
+            border-radius: 10px; /* 둥근 테두리 */
+            background-color: #f8f8f8; /* 흰색 배경색 */
+            text-align: center; /* 텍스트 가운데 정렬 */
+        }
+
+        h2 {
+            color: #ff5733; /* 주황색 글자색 */
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #ff5733; /* 주황색 배경색 */
+            color: #ffffff; /* 흰색 글자색 */
+            border: none; /* 테두리 없앰 */
+            padding: 10px 20px; /* 버튼 내부 여백 설정 */
+            font-size: 16px; /* 글자 크기 설정 */
+            cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+        }
+
+        button:hover {
+            background-color: #e24424; /* 호버 상태에서의 배경색 변경 */
+        }
+    </style>
+</head>
+<body>
+<div class="confirmation">
+    <h2>メールを確認し会員登録を続けてください。</h2>
+    <button onclick="closeWindow()">閉じる</button>
+</div>
+
+<script>
+    function closeWindow() {
+        window.close();
+    }
+</script>
+</body>
+</html>

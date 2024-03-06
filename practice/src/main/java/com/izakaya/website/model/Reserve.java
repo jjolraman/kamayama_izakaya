@@ -1,8 +1,5 @@
 package com.izakaya.website.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import com.izakaya.website.entity.ReserveEntity;
 
 import lombok.Builder;
@@ -13,34 +10,40 @@ import lombok.NoArgsConstructor;
 @Data
 public class Reserve {
 	private Long id;
-//	private User user;
+	private User user;
 	private int person;
-//	private Menu menu;
-	private LocalDate date;
+	private String menu;
+	private String date;
 	private String time;
 	private Member member;
+	private String email;
 	
 	public ReserveEntity toEntity() {
 		ReserveEntity build = ReserveEntity.builder()
 				.id(id)
+				.user(user.toEntity())
 				.person(person)
-//				.menu(menu)
+				.menu(menu)
 				.date(date)
 				.time(time)
 				.member(member)
+				.email(email)
 				.build();
 		return build;
 	}
 	
 	@Builder
-	public Reserve(Long id, int person,
-			LocalDate date, String time, Member member) {
+	public Reserve(Long id, User user, int person,
+			String menu, String date, String time, Member member,
+			String email) {
 		this.id = id;
+		this.user = user;
 		this.person = person;
-//		this.menu = menu;
+		this.menu = menu;
 		this.date = date;
 		this.time = time;
 		this.member = member;
+		this.email = email;
 	}
 }
 

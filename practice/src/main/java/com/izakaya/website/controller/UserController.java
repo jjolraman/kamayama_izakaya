@@ -1,117 +1,119 @@
 package com.izakaya.website.controller;
 
-import java.util.List;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
-
 import com.izakaya.website.model.User;
-import com.izakaya.website.repository.UserRepository;
 import com.izakaya.website.service.UserService;
-
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import jakarta.servlet.http.HttpSession;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Slf4j
-@RequestMapping("/")
-@RequiredArgsConstructor
 @Controller
+@RequiredArgsConstructor
+@RequestMapping("/")
 public class UserController {
-	// 생성자 주입
-	private final UserService userService;
-	private final UserRepository userRepository;
-	
-	//메인을 index로 변경 main쓰면 원상복구
-	@GetMapping()
-	public String main() {
-		return "index";
-	}
-	
-	/*회원가입 페이지*/
-	@GetMapping("join")
-	public String joinForm(Model model) {
-		User user = new User();
-		model.addAttribute("user", user);
-		return "user/join";
-	}
-	
-	/*회원가입*/
-	@PostMapping("join")
-	public String join(@ModelAttribute User user) {
-		User findUser = userService.findByEmail(user.getEmail());
-		
-		// 아이디 중복 확인
-		if(findUser != null) {
-			return "user/join";
-		}
-		
-		userService.create(user);
-		return "redirect:/";
-	}
-	
-	/*로그인 페이지*/
-	@GetMapping("login")
-	public String loginForm(Model model) {
-		model.addAttribute("user", new User());
-		return "user/login";
-	}
-	
-	/*로그인*/
-	@PostMapping("login")
-	public String login(@ModelAttribute User user, HttpSession session) {
-		User loginResult = userService.login(user);
-		
-		if(loginResult != null) {
-			session.setAttribute("loginUser", loginResult);
-			return "redirect:/";
-		} else {
-			return "user/login";
-		}
-	}
-	
-	@GetMapping("logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
-	}
-	
-	@GetMapping("list")
-	public String findAll(Model model) {
-		List<User> UserList = userService.findAll();
-		model.addAttribute("userList", UserList);
-		return "user/list";
-	}
-	
-	@GetMapping("list/{id}")
-	public String findbyId(@PathVariable(name="id") Long id, Model model) {
-		User user = userService.findById(id);
-		model.addAttribute("user", user);
-		return "user/detail";
-	}
-	
-	@GetMapping("update/{id}")
-	public String updateForm(@PathVariable(name="id") Long id, Model model) {
-		User user = userService.findById(id);
-		model.addAttribute("user", user);
-		return "user/update";
-	}
-	
-	@PostMapping("update/{id}")
-	public String update(@ModelAttribute User user) {
-		userService.update(user);
-		return "redirect:/list/{id}";
-	}
-	
-	@GetMapping("delete/{id}")
-	public String delete(@PathVariable(name="id") Long id) {
-		userService.deleteById(id);	
-		return "redirect:/list";	
-	}
+    private final UserService userService;
+
+    // 메뉴 이동
+    @GetMapping("menu")
+    public String menu() {
+        return "/menu.html";
+    }
+
+    // 점포정보 이동
+    @GetMapping("about")
+    public String about() {
+        return "/about.html";
+    }
+
+    // QnA(게시판) 이동
+    @GetMapping("contact")
+    public String create() {
+        return "/contact.html";
+    }
+
+    // 회원가입 페이지
+    @GetMapping("join")
+    public String joinForm(Model model) {
+        model.addAttribute("user", new User());
+        return "user/join";
+    }
+
+ // 회원가입 요청 처리
+    @PostMapping("join")
+    public String join(@ModelAttribute @Validated User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        // 유효성 검사 실패 시 다시 회원가입 폼으로 이동
+        if (bindingResult.hasErrors()) {
+            return "user/join";
+        }
+
+        // 이메일 중복 확인
+        boolean isEmailDuplicate = userService.checkEmailDuplicate(user.getEmail());
+        if (isEmailDuplicate) {
+            // 중복된 이메일 처리
+            // 예를 들어 알림창을 띄우거나 다른 방식으로 사용자에게 알림을 줄 수 있습니다.
+        	redirectAttributes.addFlashAttribute("message", "중복된 이메일입니다.");
+        	return "redirect:/EmailCheck";
+
+        }
+
+        userService.create(user);
+        log.info("user: {}", user);
+        return "redirect:/CheckEmail"; // 회원가입 성공 시 CheckEmail.html 페이지로 이동
+    }
+
+
+    // 로그인 페이지
+    @GetMapping("login")
+    public String loginForm(Model model) {
+        model.addAttribute("user", new User());
+        return "user/login";
+    }
+
+    // 로그인 요청 처리
+    @PostMapping("/login")
+    public String login(@ModelAttribute User user, HttpSession session, RedirectAttributes redirectAttributes) {
+        User loginResult = userService.login(user);
+        if (loginResult != null) {
+            session.setAttribute("loginUser", loginResult);
+            log.info("loginUser: {}", loginResult);
+            return "redirect:/closePopup"; // 로그인 성공 시 팝업 창을 닫는 페이지로 이동
+        } else {
+            redirectAttributes.addFlashAttribute("error", "メールアドレスまたはパスワードが正しくありません。");
+            return "redirect:/login";
+        }
+    }
+
+    // 로그아웃 요청 처리
+    @GetMapping("logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
+
+    // 유저 리스트 페이지
+    @GetMapping("list")
+    public String findAll(Model model) {
+        List<User> userList = userService.findAll();
+        model.addAttribute("userList", userList);
+        return "user/list";
+    }
+
+    // 이메일 인증 요청 처리
+    @GetMapping("verify")
+    public String verifyEmail(@RequestParam("token") String token, RedirectAttributes redirectAttributes) {
+        if (userService.verifyEmail(token, redirectAttributes)) {
+            return "redirect:/closePopupJoin"; // 이메일 인증 성공 시 로그인 페이지로 리다이렉트
+        } else {
+            return "user/verification_fail"; // 이메일 인증 실패 시 이메일 인증 실패 페이지로 리다이렉트
+        }
+    }
 }
