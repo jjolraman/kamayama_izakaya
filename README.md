@@ -8,7 +8,7 @@
 | 名前   | Github                                  | 役割 |
 | ------ | ---------------------------------       | ---- |
 | ヤン・ジンギュ | https://github.com/jjolraman            |      |
-| イ・ジェイク | https://github.com/okachimachi0522      |      |
+| イ・ジェイク | https://github.com/okachimachi0522      |会員登録、ログイン、メール送信|
 | キム・スンファン | https://github.com/abss7401             | 予約, 問い合せ|
 
 ## 1. サービス概要
